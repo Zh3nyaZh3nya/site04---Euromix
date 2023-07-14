@@ -1,10 +1,21 @@
 <template>
-$END$
+  <div>
+    <Header />
+    <Navbar />
+    <div>
+      <nuxt></nuxt>
+    </div>
+  </div>
 </template>
 
 <script>
+import Header from "@/components/Header";
+import Navbar from "@/components/Navbar";
 export default {
-name: "default"
+  name: "default",
+  components: {
+    Header, Navbar
+  }
 }
 </script>
 
