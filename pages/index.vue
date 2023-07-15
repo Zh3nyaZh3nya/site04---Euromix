@@ -1,10 +1,14 @@
 <template>
-
+  <MainHeader/>
 </template>
 
 <script>
+import MainHeader from "@/components/MainHeader";
 export default {
-  name: "index"
+  name: "index",
+  components: {
+    MainHeader
+  }
 }
 </script>
 
