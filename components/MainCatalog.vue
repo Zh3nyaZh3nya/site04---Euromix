@@ -1,0 +1,310 @@
+<template>
+  <section class="main__catalog">
+    <div class="container">
+      <div class="main__catalog-title">
+        <h2>КАТАЛОГ</h2>
+      </div>
+      <div class="main__catalog__tabs">
+        <ul class="nav nav-pills">
+          <li class="nav-item">
+            <button class="nav-link" :class="{active: activeTab === 'factories'}" @click="activeTab = 'factories'">Бетонные заводы</button>
+          </li>
+          <li class="nav-item">
+            <button class="nav-link" :class="{active: activeTab === 'products'}" @click="activeTab = 'products'">Продукция</button>
+          </li>
+          <li class="nav-item">
+            <button class="nav-link" :class="{active: activeTab === 'accessories'}" @click="activeTab = 'accessories'">Комплектующие</button>
+          </li>
+        </ul>
+      </div>
+      <div class="main__catalog__content">
+        <div class="main__catalog__content__factories" :class="{active: activeTab === 'factories'}">
+          <div class="row">
+            <div
+              class="col-lg-6"
+              v-for="factories in factoriesData"
+              :key="factories.id"
+            >
+              <div class="main__catalog__content__card">
+                <div class="main__catalog__content__card-img">
+                  <img :src="factories.img" alt="" />
+                </div>
+                <div class="main__catalog__content__card__text">
+                  <div class="main__catalog__content__card__text-title">
+                    <h3>{{factories.title}}</h3>
+                  </div>
+                  <div class="main__catalog__content__card__text-subtitle">
+                    <p>{{factories.subtitle}}</p>
+                  </div>
+                </div>
+                <div class="main__catalog__content__card-btn">
+                  <button>
+                    <img src="/main/catalogMain/arrowButton.svg" alt="" />
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="main__catalog__content__transition col-lg-6">
+              <nuxt-link to="#">
+                Перейти в каталог
+                <img src="/main/catalogMain/arrowButtonOrange.svg" alt="">
+              </nuxt-link>
+            </div>
+          </div>
+        </div>
+        <div class="main__catalog__content__products" :class="{active: activeTab === 'products'}">
+          <div class="row">
+            <div
+              class="col-lg-6"
+              v-for="products in productsData"
+              :key="products.id"
+            >
+              <div class="main__catalog__content__card">
+                <div class="main__catalog__content__card-img">
+                  <img :src="products.img" alt="" />
+                </div>
+                <div class="main__catalog__content__card__text">
+                  <div class="main__catalog__content__card__text-title">
+                    <h3>{{products.title}}</h3>
+                  </div>
+                  <div class="main__catalog__content__card__text-subtitle">
+                    <p>{{products.subtitle}}</p>
+                  </div>
+                </div>
+                <div class="main__catalog__content__card-btn">
+                  <button>
+                    <img src="/main/catalogMain/arrowButton.svg" alt="" />
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="main__catalog__content__transition col-lg-6">
+              <nuxt-link to="#">
+                Перейти в каталог
+                <img src="/main/catalogMain/arrowButtonOrange.svg" alt="">
+              </nuxt-link>
+            </div>
+          </div>
+        </div>
+        <div class="main__catalog__content__accessories" :class="{active: activeTab === 'accessories'}">
+          <div class="row">
+            <div
+              class="col-lg-6"
+              v-for="accessories in accessoriesData"
+              :key="accessories.id"
+            >
+              <div class="main__catalog__content__card">
+                <div class="main__catalog__content__card-img">
+                  <img :src="accessories.img" alt="" />
+                </div>
+                <div class="main__catalog__content__card__text">
+                  <div class="main__catalog__content__card__text-title">
+                    <h3>{{accessories.title}}</h3>
+                  </div>
+                  <div class="main__catalog__content__card__text-subtitle">
+                    <p>{{accessories.subtitle}}</p>
+                  </div>
+                </div>
+                <div class="main__catalog__content__card-btn">
+                  <button>
+                    <img src="/main/catalogMain/arrowButton.svg" alt="" />
+                  </button>
+                </div>
+              </div>
+
+            </div>
+            <div class="main__catalog__content__transition col-lg-6">
+              <nuxt-link to="#">
+                Перейти в каталог
+                <img src="/main/catalogMain/arrowButtonOrange.svg" alt="">
+              </nuxt-link>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</template>
+
+<script>
+export default {
+  name: "MainCatalog",
+  data() {
+    return {
+      activeTab: 'factories',
+      activeClass: 'factories',
+      factoriesData: [
+        {
+          id: 1,
+          title: "Мобильные бетонные заводы Euromix Crocus",
+          subtitle: "Мобильный бетонный завод EUROMIX CROCUS 10.500, производительность до 10 м³/ч, весовая система дозирования цемента и инертных заполнителей",
+          img: "/main/catalogMain/img1.png",
+        },
+        {
+          id: 2,
+          title: "Бетонные заводы серии Euromix Crocus Compact",
+          subtitle: "Мобильный бетонный завод EUROMIX CROCUS 10.500, производительность до 10 м³/ч, весовая система дозирования цемента и инертных заполнителей",
+          img: "/main/catalogMain/img2.png",
+        },
+        {
+          id: 3,
+          title: "Бетонные заводы серии Euromix Crocus alfa (скип)",
+          subtitle: "Мобильный бетонный завод EUROMIX CROCUS 10.500, производительность до 10 м³/ч, весовая система дозирования цемента и инертных заполнителей",
+          img: "/main/catalogMain/img3.png",
+        },
+        {
+          id: 4,
+          title: "Бетонные заводы серии Euromix Crocus alfa (лента)",
+          subtitle: "Мобильный бетонный завод EUROMIX CROCUS 10.500, производительность до 10 м³/ч, весовая система дозирования цемента и инертных заполнителей",
+          img: "/main/catalogMain/img4.png",
+        },
+        {
+          id: 5,
+          title: "Автомиксер серии Euromix Rolltruck",
+          subtitle: "Мобильный бетонный завод EUROMIX CROCUS 10.500, производительность до 10 м³/ч, весовая система дозирования цемента и инертных заполнителей",
+          img: "/main/catalogMain/img5.png",
+        },
+      ],
+      productsData: [
+        {
+          id: 1,
+          title: "Бетоносмесители",
+          img: "/main/catalogMain/img6.png",
+        },
+        {
+          id: 2,
+          title: "Силосы",
+          img: "/main/catalogMain/img7.png",
+        },
+        {
+          id: 3,
+          title: "Дозирующие компоненты инертных материалов",
+          img: "/main/catalogMain/img8.png",
+        },
+      ],
+      accessoriesData: [
+        {
+          id: 1,
+          title: "Дозирующие компоненты инертных материалов",
+          img: "/main/catalogMain/img1.png"
+        }
+      ]
+    }
+  },
+}
+</script>
+
+<style lang="scss">
+
+.main__catalog {
+  &-title {
+    margin-bottom: 11px;
+    h2 {
+      color: #222A31;
+      font-size: 24px;
+      font-weight: 700;
+    }
+  }
+  &__tabs {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 26px;
+    .nav {
+      .nav-item {
+        font-size: 20px;
+        font-weight: 400;
+      }
+      .active {
+        background: #FF8B00;
+      }
+    }
+  }
+  &__content {
+    &__card {
+      margin-bottom: 28px;
+      padding-bottom: 18px;
+      position: relative;
+      &-img {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 15px;
+      }
+      &__text {
+        margin: 0 54px;
+        &-title {
+          margin-bottom: 14px;
+          h3 {
+            font-size: 24px;
+            font-weight: 400;
+          }
+        }
+        &-subtitle {
+          width: 400px;
+          p {
+            color: #474747;
+            font-size: 14px;
+            font-weight: 400;
+          }
+        }
+      }
+      &-btn {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        button {
+          width: 93px;
+          height: 93px;
+          position: relative;
+          background: #FF6B00;
+          overflow: hidden;
+          img {
+            position: absolute;
+          }
+          &::before {
+            content: "";
+            position: absolute;
+            bottom: 25px;
+            left: -70px;
+            width: 145%;
+            height: 145%;
+            background-color: white;
+            transform: rotate(45deg);
+          }
+        }
+      }
+      &:hover {
+        border-radius: 5px;
+        background: #FFF;
+        box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.25);
+      }
+    }
+    &__transition {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      a {
+        display: flex;
+        align-items: center;
+        column-gap: 11px;
+        color: #FF6B00;
+        font-size: 16px;
+        font-weight: 500;
+        text-transform: uppercase;
+      }
+    }
+    &__factories {
+    }
+  }
+}
+
+.main__catalog__content__factories,
+.main__catalog__content__products,
+.main__catalog__content__accessories {
+  display: none;
+}
+
+.active {
+  display: block;
+}
+</style>

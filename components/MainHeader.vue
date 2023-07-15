@@ -78,6 +78,7 @@ export default {
 
 <style lang="scss">
 .main {
+  margin-bottom: 18px;
   &-bg {
     background: url("/main/headerMain/header.png") no-repeat;
     position: relative;

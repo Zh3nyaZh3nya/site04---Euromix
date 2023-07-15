@@ -1,7 +1,7 @@
 <template>
   <header>
     <div class="header container">
-      <div class="header__left">
+      <div class="header__left col-lg-9">
         <div class="header__left__mail">
           <img src="/svgHeader/mail.svg" alt="#" />
           <span>info@euromix.biz</span>
@@ -21,7 +21,7 @@
         </div>
       </div>
       <div class="header__right">
-        <div class="header__right__login">
+        <div class="header__right__login col-lg-4">
           <img src="/svgHeader/login.svg" alt="" />
           <span>Вход</span>
         </div>
