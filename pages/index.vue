@@ -4,6 +4,7 @@
     <MainCatalog/>
     <MainBlockGrid/>
     <MainPartners/>
+    <PopularProducts/>
   </div>
 </template>
 

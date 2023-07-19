@@ -10,7 +10,7 @@ export default {
 }
 </script>
 
-<style scoped lang="scss">
+<style lang="scss">
 .custom-btn {
   border-radius: 100px;
   background: #FF6B00;
