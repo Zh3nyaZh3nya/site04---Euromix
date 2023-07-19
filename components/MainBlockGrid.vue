@@ -1,19 +1,23 @@
 <template>
   <section class="main__grid">
     <div class="container">
-      <div class="main__grid__content">
-        <div
-          class="main__grid__item"
-          v-for="item in gridData"
-          :key="item.id"
-        >
-          <div class="main__grid__item-img">
-            <img :src="item.img" alt="">
+      <div class="row">
+        <div class="main__grid__content">
+          <div
+            class="main__grid__item col-lg-2"
+            v-for="item in gridData"
+            :key="item.id"
+          >
+            <div class="main__grid__item-img">
+              <img :src="item.img" alt="">
+            </div>
+            <div class="main__grid__item-title">
+              <h2>{{item.title}}</h2>
+            </div>
           </div>
-          <div class="main__grid__item-title">
-            <h2>{{item.title}}</h2>
-          </div>
+
         </div>
+
       </div>
     </div>
   </section>
@@ -65,7 +69,8 @@ export default {
   margin-bottom: 75px;
   &__content {
     display: flex;
-    column-gap: 32px;
+    column-gap: 28px;
+    flex-wrap: wrap;
   }
   &__item {
     border: 2px solid #FF6B00;

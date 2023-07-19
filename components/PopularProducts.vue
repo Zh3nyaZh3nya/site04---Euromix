@@ -24,7 +24,7 @@
               <p>{{products.price}}</p>
             </div>
             <div class="popular__products__content-item-footer">
-              <div class="popular__products__content-item-footer-cart" v-show="products.availability === 'В наличии'">
+              <div class="popular__products__content-item-footer-cart">
                 <button>
                   <img src="/main/popularProductsMain/cart.svg" alt="" />
                   <p>В корзину</p>
@@ -125,6 +125,8 @@ export default {
       }
       &-footer {
         display: flex;
+        justify-content: space-between;
+        align-items: center;
         &-cart {
           margin-left: 15px;
           button {
@@ -143,9 +145,7 @@ export default {
           }
         }
         &-btn {
-          position: absolute;
-          right: 0;
-          bottom: 0;
+          position: relative;
           button {
             border: 28px solid #fff;
             border-right: 28px solid #FF6B00;

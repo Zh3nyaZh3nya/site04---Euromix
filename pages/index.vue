@@ -5,6 +5,7 @@
     <MainBlockGrid/>
     <MainPartners/>
     <PopularProducts/>
+    <MainAdvantages/>
   </div>
 </template>
 
