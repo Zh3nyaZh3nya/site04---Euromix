@@ -253,23 +253,13 @@ export default {
         right: 0;
         bottom: 0;
         button {
-          width: 93px;
-          height: 93px;
-          position: relative;
-          background: #FF6B00;
-          overflow: hidden;
+          border: 47px solid #fff;
+          border-right: 47px solid #FF6B00;
+          border-bottom: 47px solid #FF6B00;
+          border-top-right-radius: 7px;
+          border-bottom-left-radius: 7px;
           img {
             position: absolute;
-          }
-          &::before {
-            content: "";
-            position: absolute;
-            bottom: 25px;
-            left: -70px;
-            width: 145%;
-            height: 145%;
-            background-color: white;
-            transform: rotate(45deg);
           }
         }
       }

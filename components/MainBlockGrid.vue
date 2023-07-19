@@ -62,6 +62,7 @@ export default {
   background-size: cover;
   display: flex;
   padding: 65px 0;
+  margin-bottom: 75px;
   &__content {
     display: flex;
     column-gap: 32px;
