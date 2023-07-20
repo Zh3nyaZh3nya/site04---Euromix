@@ -41,9 +41,16 @@ export default {
   modules: [
     // https://go.nuxtjs.dev/bootstrap
     'bootstrap-vue/nuxt',
+    'vue-yandex-maps/nuxt',
   ],
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
-  }
+  },
+
+  yandexMaps: {
+    apiKey: 'd788c73c-29d9-479c-89da-856189171458',
+    lang: 'ru_RU', // Язык карты (необязательно)
+    coordorder: 'latlong', // Порядок координат (необязательно)
+  },
 }
