@@ -9,6 +9,7 @@
     <MainServices/>
     <MainCompletedProjects/>
     <MainAbout/>
+    <MainReviews/>
   </div>
 </template>
 

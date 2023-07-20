@@ -235,16 +235,12 @@ export default {
       column-gap: 15px;
       align-items: center;
       button {
-        position: relative; /* Добавляем позиционирование для использования псевдоэлемента */
+        position: relative;
         background: #FF6B00;
         border-radius: 50px;
         width: 10px;
         height: 10px;
       }
-
-      button.active {
-      }
-
       button.active::after {
         content: "";
         position: absolute;

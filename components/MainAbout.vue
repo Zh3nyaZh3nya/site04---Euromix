@@ -77,6 +77,7 @@ export default {
 
 <style lang="scss">
 .main__about {
+  margin-bottom: 61px;
   &-title {
     margin-bottom: 30px;
     h2 {
