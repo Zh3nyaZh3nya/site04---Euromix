@@ -46,7 +46,8 @@ export default {
 
 <style lang="scss">
 .projects {
-  background: url("/main/projectsMain/bg.png");
+  background: url("/main/projectsMain/bg.png") no-repeat;
+  background-size: cover;
   padding: 35px 0 18px 0;
   margin-bottom: 70px;
   &-title {

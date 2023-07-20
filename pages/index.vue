@@ -8,6 +8,7 @@
     <MainAdvantages/>
     <MainServices/>
     <MainCompletedProjects/>
+    <MainAbout/>
   </div>
 </template>
 
