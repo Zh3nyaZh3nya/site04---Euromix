@@ -147,7 +147,7 @@ export default {
         &-btn {
           position: relative;
           button {
-            border: 28px solid #fff;
+            border: 28px solid transparent;
             border-right: 28px solid #FF6B00;
             border-bottom: 28px solid #FF6B00;
             border-top-right-radius: 7px;

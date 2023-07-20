@@ -7,13 +7,19 @@
       <div class="main__catalog__tabs">
         <ul class="nav nav-pills">
           <li class="nav-item">
-            <button class="nav-link" :class="{active: activeTab === 'factories'}" @click="activeTab = 'factories'">Бетонные заводы</button>
+            <button class="nav-link" :class="{active: activeTab === 'factories'}" @click="activeTab = 'factories'">
+              <p>Бетонные заводы</p>
+            </button>
           </li>
           <li class="nav-item">
-            <button class="nav-link" :class="{active: activeTab === 'products'}" @click="activeTab = 'products'">Продукция</button>
+            <button class="nav-link" :class="{active: activeTab === 'products'}" @click="activeTab = 'products'">
+              <p>Продукция</p>
+            </button>
           </li>
           <li class="nav-item">
-            <button class="nav-link" :class="{active: activeTab === 'accessories'}" @click="activeTab = 'accessories'">Комплектующие</button>
+            <button class="nav-link" :class="{active: activeTab === 'accessories'}" @click="activeTab = 'accessories'">
+              <p>Комплектующие</p>
+            </button>
           </li>
         </ul>
       </div>
@@ -210,12 +216,28 @@ export default {
     justify-content: center;
     margin-bottom: 26px;
     .nav {
-      .nav-item {
-        font-size: 20px;
-        font-weight: 400;
-      }
-      .active {
-        background: #FF8B00;
+      &-item {
+        .nav-link {
+          text-align: start;
+          display: flex;
+          column-gap: 14px;
+          align-items: center;
+          padding: 9px 24px 11px 28px;
+          p {
+            color: black;
+            font-size: 20px;
+            font-weight: 400;
+          }
+        }
+        .nav-link.active {
+          background: #FF8000;
+          transform: skew(20deg);
+          p, img {
+            filter: brightness(0) invert(1);
+            transform: skew(-20deg);
+            color: #fff;
+          }
+        }
       }
     }
   }
@@ -253,7 +275,7 @@ export default {
         right: 0;
         bottom: 0;
         button {
-          border: 47px solid #fff;
+          border: 47px solid transparent;
           border-right: 47px solid #FF6B00;
           border-bottom: 47px solid #FF6B00;
           border-top-right-radius: 7px;
@@ -282,8 +304,6 @@ export default {
         font-weight: 500;
         text-transform: uppercase;
       }
-    }
-    &__factories {
     }
   }
 }
