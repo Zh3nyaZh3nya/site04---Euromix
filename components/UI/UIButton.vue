@@ -16,7 +16,7 @@ export default {
   background: #FF6B00;
   padding: 16px 18px;
   color: #FFF;
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 500;
   text-transform: uppercase;
 }

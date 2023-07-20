@@ -167,6 +167,7 @@ export default {
 
 <style lang="scss">
 .services {
+  margin-bottom: 51px;
   &-title {
     margin-bottom: 29px;
     h2 {

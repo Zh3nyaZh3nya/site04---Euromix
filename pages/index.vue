@@ -7,6 +7,7 @@
     <PopularProducts/>
     <MainAdvantages/>
     <MainServices/>
+    <MainCompletedProjects/>
   </div>
 </template>
 
