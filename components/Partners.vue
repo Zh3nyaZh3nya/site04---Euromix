@@ -55,7 +55,7 @@
 
 <script>
 export default {
-  name: "MainPartners",
+  name: "Partners",
   data() {
     return {
       activeIndex: 0,

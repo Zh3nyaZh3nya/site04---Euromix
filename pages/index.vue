@@ -3,7 +3,7 @@
     <MainHeader/>
     <MainCatalog/>
     <MainBlockGrid/>
-    <MainPartners/>
+    <Partners/>
     <PopularProducts/>
     <Advantages/>
     <MainServices/>
