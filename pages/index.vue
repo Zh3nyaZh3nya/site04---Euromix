@@ -5,11 +5,12 @@
     <MainBlockGrid/>
     <MainPartners/>
     <PopularProducts/>
-    <MainAdvantages/>
+    <Advantages/>
     <MainServices/>
     <MainCompletedProjects/>
     <MainAbout/>
     <MainReviews/>
+    <News/>
   </div>
 </template>
 

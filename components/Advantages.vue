@@ -47,7 +47,7 @@
 <script>
 import UIButton from "@/components/UI/UIButton";
 export default {
-  name: "MainAdvantages",
+  name: "Advantages",
   components: {
     UIButton
   },
