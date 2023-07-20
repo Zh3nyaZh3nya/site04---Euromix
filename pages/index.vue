@@ -6,6 +6,7 @@
     <MainPartners/>
     <PopularProducts/>
     <MainAdvantages/>
+    <MainServices/>
   </div>
 </template>
 

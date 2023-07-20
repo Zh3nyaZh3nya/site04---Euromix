@@ -82,6 +82,7 @@ export default {
   background-size: cover;
   position: relative;
   padding: 35px 0;
+  margin-bottom: 67px;
   &:before {
     content: "";
     background: url("/main/advantagesMain/triangle.svg") no-repeat;
