@@ -1,35 +1,37 @@
 <template>
-  <section class="navbar container">
-    <div class="navbar__logo">
-      <nuxt-link to="/">
-        <img src="/navbar/logo.png" alt="#" />
-        <span>Работаем с  1992 года!</span>
-      </nuxt-link>
+  <section class="navbar">
+    <div class="container">
+      <div class="navbar__logo">
+        <nuxt-link to="/">
+          <img src="/navbar/logo.png" alt="#" />
+          <span>Работаем с  1992 года!</span>
+        </nuxt-link>
+      </div>
+      <nav>
+        <ul class="nav">
+          <li class="nav-link">
+            <nuxt-link to="#">О заводе</nuxt-link>
+            <img src="/line.svg" alt="">
+          </li>
+          <li class="nav-link">
+            <nuxt-link to="#">Каталог</nuxt-link>
+            <img src="/line.svg" alt="">
+          </li>
+          <li class="nav-link">
+            <nuxt-link to="#">Цены</nuxt-link>
+            <img src="/line.svg" alt="">
+          </li>
+          <li class="nav-link">
+            <nuxt-link to="#">Услуги</nuxt-link>
+            <img src="/line.svg" alt="">
+          </li>
+          <li class="nav-link">
+            <nuxt-link to="#">Контакты</nuxt-link>
+            <img src="/line.svg" alt="">
+          </li>
+        </ul>
+      </nav>
     </div>
-    <nav>
-      <ul class="nav">
-        <li class="nav-link">
-          <nuxt-link to="#">О заводе</nuxt-link>
-          <img src="/line.svg" alt="">
-        </li>
-        <li class="nav-link">
-          <nuxt-link to="#">Каталог</nuxt-link>
-          <img src="/line.svg" alt="">
-        </li>
-        <li class="nav-link">
-          <nuxt-link to="#">Цены</nuxt-link>
-          <img src="/line.svg" alt="">
-        </li>
-        <li class="nav-link">
-          <nuxt-link to="#">Услуги</nuxt-link>
-          <img src="/line.svg" alt="">
-        </li>
-        <li class="nav-link">
-          <nuxt-link to="#">Контакты</nuxt-link>
-          <img src="/line.svg" alt="">
-        </li>
-      </ul>
-    </nav>
   </section>
 </template>
 

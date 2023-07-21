@@ -106,3 +106,17 @@ h6 {
 p {
   margin: 0;
 }
+
+/* анимация для алерта */
+
+.alert-enter-active {
+  transition: all .3s ease;
+}
+.alert-leave-active {
+  transition: all .2s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+}
+.alert-enter, .alert-leave-to
+  /* .slide-fade-leave-active до версии 2.1.8 */ {
+  transform: translateX(10px);
+  opacity: 0;
+}

@@ -2,14 +2,17 @@
   <header>
     <div class="header container">
       <div class="header__left col-lg-9">
-        <div class="header__left__mail">
+        <div class="header__left__mail" @click="copyToClipboard('info@euromix.biz')">
           <img src="/svgHeader/mail.svg" alt="#" />
           <span>info@euromix.biz</span>
         </div>
-        <div class="header__left__phone">
+        <div class="header__left__phone" @click="copyToClipboard('+7 (4872) 704-838')">
           <img src="/svgHeader/phone.svg" alt="" />
           <span>+7 (4872) 704-838</span>
         </div>
+        <transition name="alert">
+          <Alert v-if="showAlert" :message="alertMessage" :duration="3000" @closeAlert="closeAlert" />
+        </transition>
         <div class="header__left__call">
           <span>Заказать звонок</span>
         </div>
@@ -36,8 +39,44 @@
 </template>
 
 <script>
+import Alert from '@/components/Alert.vue'
 export default {
-  name: "header-component"
+  name: "header-component",
+  components: {
+    Alert
+  },
+  data() {
+    return {
+      showAlert: false,
+      alertMessage: '',
+    }
+  },
+  methods: {
+    copyToClipboard(text) {
+      const el = document.createElement('textarea');
+      el.value = text;
+      el.setAttribute('readonly', '');
+      el.style.position = 'absolute';
+      el.style.left = '-9999px';
+      document.body.appendChild(el);
+      const selected =
+        document.getSelection().rangeCount > 0
+          ? document.getSelection().getRangeAt(0)
+          : false;
+      el.select();
+      document.execCommand('copy');
+      document.body.removeChild(el);
+      if (selected) {
+        document.getSelection().removeAllRanges();
+        document.getSelection().addRange(selected);
+      }
+      this.showAlert = true;
+      this.alertMessage = `Скопировано: ${text}`;
+    },
+    closeAlert() {
+      this.showAlert = false;
+    },
+  }
 }
 </script>
 
@@ -63,11 +102,13 @@ header {
       display: flex;
       text-align: center;
       column-gap: 13px;
+      cursor: pointer;
     }
     &__phone {
       display: flex;
       align-items: center;
       column-gap: 7px;
+      cursor: pointer;
     }
     &__call {
       border-bottom: 1px dashed #8F8F8F;
