@@ -35,22 +35,22 @@ export default {
           title: "Сертификаты качества",
         },
         {
-          id: 1,
+          id: 2,
           img: "/main/blockGridMain/car.svg",
           title: "Продукция в наличии на складе",
         },
         {
-          id: 1,
+          id: 3,
           img: "/main/blockGridMain/table.svg",
           title: "Развернутая комплектация с ценами",
         },
         {
-          id: 1,
+          id: 4,
           img: "/main/blockGridMain/member.svg",
           title: "Мобильная бригада пуско-наладки оборудования",
         },
         {
-          id: 1,
+          id: 5,
           img: "/main/blockGridMain/car.svg",
           title: "Свой автопарк везем застрахованные грузы",
         },

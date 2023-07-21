@@ -29,27 +29,29 @@
             <div class="row">
               <div
                 class="col-lg-6"
-                v-for="factories in factoriesData"
+                v-for="factories in getFactoriesData"
                 :key="factories.id"
               >
-                <div class="main__catalog__content__card">
-                  <div class="main__catalog__content__card-img">
-                    <img :src="factories.img" alt="" />
-                  </div>
-                  <div class="main__catalog__content__card__text">
-                    <div class="main__catalog__content__card__text-title">
-                      <h3>{{factories.title}}</h3>
+                <a href="#" @click.prevent="goTo(factories)">
+                  <div class="main__catalog__content__card">
+                    <div class="main__catalog__content__card-img">
+                      <img :src="factories.img" alt="" />
                     </div>
-                    <div class="main__catalog__content__card__text-subtitle">
-                      <p>{{factories.subtitle}}</p>
+                    <div class="main__catalog__content__card__text">
+                      <div class="main__catalog__content__card__text-title">
+                        <h3>{{factories.title}}</h3>
+                      </div>
+                      <div class="main__catalog__content__card__text-subtitle">
+                        <p>{{factories.subtitle}}</p>
+                      </div>
+                    </div>
+                    <div class="main__catalog__content__card-btn">
+                      <button>
+                        <img src="/main/catalogMain/arrowButton.svg" alt="" />
+                      </button>
                     </div>
                   </div>
-                  <div class="main__catalog__content__card-btn">
-                    <button>
-                      <img src="/main/catalogMain/arrowButton.svg" alt="" />
-                    </button>
-                  </div>
-                </div>
+                </a>
               </div>
               <div class="main__catalog__content__transition col-lg-6">
                 <nuxt-link to="#">
@@ -65,27 +67,29 @@
             <div class="row">
               <div
                 class="col-lg-6"
-                v-for="products in productsData"
+                v-for="products in getProductsData"
                 :key="products.id"
               >
-                <div class="main__catalog__content__card">
-                  <div class="main__catalog__content__card-img">
-                    <img :src="products.img" alt="" />
-                  </div>
-                  <div class="main__catalog__content__card__text">
-                    <div class="main__catalog__content__card__text-title">
-                      <h3>{{products.title}}</h3>
+                <a @click.prevent="goTo(products)">
+                  <div class="main__catalog__content__card">
+                    <div class="main__catalog__content__card-img">
+                      <img :src="products.img" alt="" />
                     </div>
-                    <div class="main__catalog__content__card__text-subtitle">
-                      <p>{{products.subtitle}}</p>
+                    <div class="main__catalog__content__card__text">
+                      <div class="main__catalog__content__card__text-title">
+                        <h3>{{products.title}}</h3>
+                      </div>
+                      <div class="main__catalog__content__card__text-subtitle">
+                        <p>{{products.subtitle}}</p>
+                      </div>
+                    </div>
+                    <div class="main__catalog__content__card-btn">
+                      <button>
+                        <img src="/main/catalogMain/arrowButton.svg" alt="" />
+                      </button>
                     </div>
                   </div>
-                  <div class="main__catalog__content__card-btn">
-                    <button>
-                      <img src="/main/catalogMain/arrowButton.svg" alt="" />
-                    </button>
-                  </div>
-                </div>
+                </a>
               </div>
               <div class="main__catalog__content__transition col-lg-6">
                 <nuxt-link to="#">
@@ -101,28 +105,29 @@
             <div class="row">
               <div
                 class="col-lg-6"
-                v-for="accessories in accessoriesData"
+                v-for="accessories in getAccessoriesData"
                 :key="accessories.id"
               >
-                <div class="main__catalog__content__card">
-                  <div class="main__catalog__content__card-img">
-                    <img :src="accessories.img" alt="" />
-                  </div>
-                  <div class="main__catalog__content__card__text">
-                    <div class="main__catalog__content__card__text-title">
-                      <h3>{{accessories.title}}</h3>
+                <a href="#" @click.prevent="goTo(accessories)">
+                  <div class="main__catalog__content__card">
+                    <div class="main__catalog__content__card-img">
+                      <img :src="accessories.img" alt="" />
                     </div>
-                    <div class="main__catalog__content__card__text-subtitle">
-                      <p>{{accessories.subtitle}}</p>
+                    <div class="main__catalog__content__card__text">
+                      <div class="main__catalog__content__card__text-title">
+                        <h3>{{accessories.title}}</h3>
+                      </div>
+                      <div class="main__catalog__content__card__text-subtitle">
+                        <p>{{accessories.subtitle}}</p>
+                      </div>
+                    </div>
+                    <div class="main__catalog__content__card-btn">
+                      <button>
+                        <img src="/main/catalogMain/arrowButton.svg" alt="" />
+                      </button>
                     </div>
                   </div>
-                  <div class="main__catalog__content__card-btn">
-                    <button>
-                      <img src="/main/catalogMain/arrowButton.svg" alt="" />
-                    </button>
-                  </div>
-                </div>
-
+                </a>
               </div>
               <div class="main__catalog__content__transition col-lg-6">
                 <nuxt-link to="#">
@@ -139,70 +144,34 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex';
 export default {
   name: "MainCatalog",
   data() {
     return {
       activeTab: 'factories',
       activeClass: 'factories',
-      factoriesData: [
-        {
-          id: 1,
-          title: "Мобильные бетонные заводы Euromix Crocus",
-          subtitle: "Мобильный бетонный завод EUROMIX CROCUS 10.500, производительность до 10 м³/ч, весовая система дозирования цемента и инертных заполнителей",
-          img: "/main/catalogMain/img1.png",
-        },
-        {
-          id: 2,
-          title: "Бетонные заводы серии Euromix Crocus Compact",
-          subtitle: "Мобильный бетонный завод EUROMIX CROCUS 10.500, производительность до 10 м³/ч, весовая система дозирования цемента и инертных заполнителей",
-          img: "/main/catalogMain/img2.png",
-        },
-        {
-          id: 3,
-          title: "Бетонные заводы серии Euromix Crocus alfa (скип)",
-          subtitle: "Мобильный бетонный завод EUROMIX CROCUS 10.500, производительность до 10 м³/ч, весовая система дозирования цемента и инертных заполнителей",
-          img: "/main/catalogMain/img3.png",
-        },
-        {
-          id: 4,
-          title: "Бетонные заводы серии Euromix Crocus alfa (лента)",
-          subtitle: "Мобильный бетонный завод EUROMIX CROCUS 10.500, производительность до 10 м³/ч, весовая система дозирования цемента и инертных заполнителей",
-          img: "/main/catalogMain/img4.png",
-        },
-        {
-          id: 5,
-          title: "Автомиксер серии Euromix Rolltruck",
-          subtitle: "Мобильный бетонный завод EUROMIX CROCUS 10.500, производительность до 10 м³/ч, весовая система дозирования цемента и инертных заполнителей",
-          img: "/main/catalogMain/img5.png",
-        },
-      ],
-      productsData: [
-        {
-          id: 1,
-          title: "Бетоносмесители",
-          img: "/main/catalogMain/img6.png",
-        },
-        {
-          id: 2,
-          title: "Силосы",
-          img: "/main/catalogMain/img7.png",
-        },
-        {
-          id: 3,
-          title: "Дозирующие компоненты инертных материалов",
-          img: "/main/catalogMain/img8.png",
-        },
-      ],
-      accessoriesData: [
-        {
-          id: 1,
-          title: "Дозирующие компоненты инертных материалов",
-          img: "/main/catalogMain/img1.png"
-        }
-      ]
     }
   },
+  methods: {
+    ...mapActions('main/mainCatalog', ['setSelectData']),
+    goTo(data) {
+      this.setSelectData(data.pageContent);
+
+      this.$router.push({path: '/' + data.idRoute});
+    }
+  },
+  computed: {
+    getFactoriesData() {
+      return this.$store.state.main.mainCatalog.mainCatalogData[0].factoriesData;
+    },
+    getProductsData() {
+      return this.$store.state.main.mainCatalog.mainCatalogData[1].productsData;
+    },
+    getAccessoriesData() {
+      return this.$store.state.main.mainCatalog.mainCatalogData[2].accessoriesData;
+    },
+  }
 }
 </script>
 
