@@ -7,33 +7,35 @@
       <div class="popular__products__content">
         <div class="row">
           <div
-            class="popular__products__content-item col-lg-3"
+            class="col-lg-3"
             v-for="products in productsData"
             :key="products.id"
           >
-            <div class="popular__products__content-item-img">
-              <img :src="products.img" alt="" />
-            </div>
-            <div class="popular__products__content-item-availability">
-              <p>{{products.availability}}</p>
-            </div>
-            <div class="popular__products__content-item-title">
-              <p>{{products.title}}</p>
-            </div>
-            <div class="popular__products__content-item-price">
-              <p>{{products.price}}</p>
-            </div>
-            <div class="popular__products__content-item-footer">
-              <div class="popular__products__content-item-footer-cart">
-                <button>
-                  <img src="/main/popularProductsMain/cart.svg" alt="" />
-                  <p>В корзину</p>
-                </button>
+            <div class="popular__products__content-item">
+              <div class="popular__products__content-item-img">
+                <img :src="products.img" alt="" />
               </div>
-              <div class="popular__products__content-item-footer-btn">
-                <button>
-                  <img src="/main/popularProductsMain/arrowButton.svg" alt="">
-                </button>
+              <div class="popular__products__content-item-availability">
+                <p>{{products.availability}}</p>
+              </div>
+              <div class="popular__products__content-item-title">
+                <p>{{products.title}}</p>
+              </div>
+              <div class="popular__products__content-item-price">
+                <p>{{products.price}}</p>
+              </div>
+              <div class="popular__products__content-item-footer">
+                <div class="popular__products__content-item-footer-cart">
+                  <button>
+                    <img src="/main/popularProductsMain/cart.svg" alt="" />
+                    <p>В корзину</p>
+                  </button>
+                </div>
+                <div class="popular__products__content-item-footer-btn">
+                  <button>
+                    <img src="/main/popularProductsMain/arrowButton.svg" alt="">
+                  </button>
+                </div>
               </div>
             </div>
           </div>
@@ -97,11 +99,17 @@ export default {
   }
   &__content {
     &-item {
+      &:hover {
+        border-radius: 5px;
+        background: #FFF;
+        box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.25);
+      }
       &-img {
         margin-bottom: 17px;
       }
       &-availability {
         margin-bottom: 6px;
+        margin-left: 10px;
         p {
           color: #FF6B00;
           font-size: 15px;
@@ -110,6 +118,7 @@ export default {
       }
       &-title {
         margin-bottom: 16px;
+        margin-left: 10px;
         p {
           font-size: 20px;
           font-weight: 400;
@@ -117,6 +126,7 @@ export default {
       }
       &-price {
         margin-bottom: 24px;
+        margin-left: 10px;
         p {
           color: #222A31;
           font-size: 18px;
@@ -161,18 +171,4 @@ export default {
     }
   }
 }
-/*
-        position: absolute;
-        right: 0;
-        bottom: 0;
-        button {
-          border: 47px solid #fff;
-          border-right: 47px solid #FF6B00;
-          border-bottom: 47px solid #FF6B00;
-          border-top-right-radius: 7px;
-          border-bottom-left-radius: 7px;
-          img {
-            position: absolute;
-          }
-        }*/
 </style>

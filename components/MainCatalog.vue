@@ -24,109 +24,115 @@
         </ul>
       </div>
       <div class="main__catalog__content">
-        <div class="main__catalog__content__factories" :class="{active: activeTab === 'factories'}">
-          <div class="row">
-            <div
-              class="col-lg-6"
-              v-for="factories in factoriesData"
-              :key="factories.id"
-            >
-              <div class="main__catalog__content__card">
-                <div class="main__catalog__content__card-img">
-                  <img :src="factories.img" alt="" />
-                </div>
-                <div class="main__catalog__content__card__text">
-                  <div class="main__catalog__content__card__text-title">
-                    <h3>{{factories.title}}</h3>
+        <transition name="slide-fade" mode="out-in">
+          <div v-if="activeTab === 'factories'" key="factories" class="main__catalog__content__factories">
+            <div class="row">
+              <div
+                class="col-lg-6"
+                v-for="factories in factoriesData"
+                :key="factories.id"
+              >
+                <div class="main__catalog__content__card">
+                  <div class="main__catalog__content__card-img">
+                    <img :src="factories.img" alt="" />
                   </div>
-                  <div class="main__catalog__content__card__text-subtitle">
-                    <p>{{factories.subtitle}}</p>
+                  <div class="main__catalog__content__card__text">
+                    <div class="main__catalog__content__card__text-title">
+                      <h3>{{factories.title}}</h3>
+                    </div>
+                    <div class="main__catalog__content__card__text-subtitle">
+                      <p>{{factories.subtitle}}</p>
+                    </div>
                   </div>
-                </div>
-                <div class="main__catalog__content__card-btn">
-                  <button>
-                    <img src="/main/catalogMain/arrowButton.svg" alt="" />
-                  </button>
+                  <div class="main__catalog__content__card-btn">
+                    <button>
+                      <img src="/main/catalogMain/arrowButton.svg" alt="" />
+                    </button>
+                  </div>
                 </div>
               </div>
-            </div>
-            <div class="main__catalog__content__transition col-lg-6">
-              <nuxt-link to="#">
-                Перейти в каталог
-                <img src="/main/catalogMain/arrowButtonOrange.svg" alt="">
-              </nuxt-link>
+              <div class="main__catalog__content__transition col-lg-6">
+                <nuxt-link to="#">
+                  Перейти в каталог
+                  <img src="/main/catalogMain/arrowButtonOrange.svg" alt="">
+                </nuxt-link>
+              </div>
             </div>
           </div>
-        </div>
-        <div class="main__catalog__content__products" :class="{active: activeTab === 'products'}">
-          <div class="row">
-            <div
-              class="col-lg-6"
-              v-for="products in productsData"
-              :key="products.id"
-            >
-              <div class="main__catalog__content__card">
-                <div class="main__catalog__content__card-img">
-                  <img :src="products.img" alt="" />
-                </div>
-                <div class="main__catalog__content__card__text">
-                  <div class="main__catalog__content__card__text-title">
-                    <h3>{{products.title}}</h3>
+        </transition>
+        <transition name="slide-fade" mode="out-in">
+          <div v-if="activeTab === 'products'" key="products" class="main__catalog__content__products">
+            <div class="row">
+              <div
+                class="col-lg-6"
+                v-for="products in productsData"
+                :key="products.id"
+              >
+                <div class="main__catalog__content__card">
+                  <div class="main__catalog__content__card-img">
+                    <img :src="products.img" alt="" />
                   </div>
-                  <div class="main__catalog__content__card__text-subtitle">
-                    <p>{{products.subtitle}}</p>
+                  <div class="main__catalog__content__card__text">
+                    <div class="main__catalog__content__card__text-title">
+                      <h3>{{products.title}}</h3>
+                    </div>
+                    <div class="main__catalog__content__card__text-subtitle">
+                      <p>{{products.subtitle}}</p>
+                    </div>
                   </div>
-                </div>
-                <div class="main__catalog__content__card-btn">
-                  <button>
-                    <img src="/main/catalogMain/arrowButton.svg" alt="" />
-                  </button>
+                  <div class="main__catalog__content__card-btn">
+                    <button>
+                      <img src="/main/catalogMain/arrowButton.svg" alt="" />
+                    </button>
+                  </div>
                 </div>
               </div>
-            </div>
-            <div class="main__catalog__content__transition col-lg-6">
-              <nuxt-link to="#">
-                Перейти в каталог
-                <img src="/main/catalogMain/arrowButtonOrange.svg" alt="">
-              </nuxt-link>
+              <div class="main__catalog__content__transition col-lg-6">
+                <nuxt-link to="#">
+                  Перейти в каталог
+                  <img src="/main/catalogMain/arrowButtonOrange.svg" alt="">
+                </nuxt-link>
+              </div>
             </div>
           </div>
-        </div>
-        <div class="main__catalog__content__accessories" :class="{active: activeTab === 'accessories'}">
-          <div class="row">
-            <div
-              class="col-lg-6"
-              v-for="accessories in accessoriesData"
-              :key="accessories.id"
-            >
-              <div class="main__catalog__content__card">
-                <div class="main__catalog__content__card-img">
-                  <img :src="accessories.img" alt="" />
-                </div>
-                <div class="main__catalog__content__card__text">
-                  <div class="main__catalog__content__card__text-title">
-                    <h3>{{accessories.title}}</h3>
+        </transition>
+        <transition name="slide-fade" mode="out-in">
+          <div v-if="activeTab === 'accessories'" key="accessories" class="main__catalog__content__accessories">
+            <div class="row">
+              <div
+                class="col-lg-6"
+                v-for="accessories in accessoriesData"
+                :key="accessories.id"
+              >
+                <div class="main__catalog__content__card">
+                  <div class="main__catalog__content__card-img">
+                    <img :src="accessories.img" alt="" />
                   </div>
-                  <div class="main__catalog__content__card__text-subtitle">
-                    <p>{{accessories.subtitle}}</p>
+                  <div class="main__catalog__content__card__text">
+                    <div class="main__catalog__content__card__text-title">
+                      <h3>{{accessories.title}}</h3>
+                    </div>
+                    <div class="main__catalog__content__card__text-subtitle">
+                      <p>{{accessories.subtitle}}</p>
+                    </div>
+                  </div>
+                  <div class="main__catalog__content__card-btn">
+                    <button>
+                      <img src="/main/catalogMain/arrowButton.svg" alt="" />
+                    </button>
                   </div>
                 </div>
-                <div class="main__catalog__content__card-btn">
-                  <button>
-                    <img src="/main/catalogMain/arrowButton.svg" alt="" />
-                  </button>
-                </div>
-              </div>
 
-            </div>
-            <div class="main__catalog__content__transition col-lg-6">
-              <nuxt-link to="#">
-                Перейти в каталог
-                <img src="/main/catalogMain/arrowButtonOrange.svg" alt="">
-              </nuxt-link>
+              </div>
+              <div class="main__catalog__content__transition col-lg-6">
+                <nuxt-link to="#">
+                  Перейти в каталог
+                  <img src="/main/catalogMain/arrowButtonOrange.svg" alt="">
+                </nuxt-link>
+              </div>
             </div>
           </div>
-        </div>
+        </transition>
       </div>
     </div>
   </section>
@@ -306,15 +312,17 @@ export default {
       }
     }
   }
+  .slide-fade-enter-active {
+    transition: all .3s ease;
+  }
+  .slide-fade-leave-active {
+    transition: all .1s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+  }
+  .slide-fade-enter, .slide-fade-leave-to
+    /* .slide-fade-leave-active до версии 2.1.8 */ {
+    transform: translateX(10px);
+    opacity: 0;
+  }
 }
 
-.main__catalog__content__factories,
-.main__catalog__content__products,
-.main__catalog__content__accessories {
-  display: none;
-}
-
-.active {
-  display: block;
-}
 </style>

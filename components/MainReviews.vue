@@ -29,11 +29,13 @@
                 ></button>
               </div>
               <div class="carousel-inner">
-                <div
+                <transition name="slide-fade" mode="out-in">
+                  <div
                   class="carousel-item"
                   v-for="(carouselItem, index) in carouselData"
                   :key="carouselItem.id"
-                  :class="{ 'active': index === activeIndex }"
+                  style="display: block"
+                  v-if="index === activeIndex"
                 >
                   <div class="row">
                     <div
@@ -47,6 +49,7 @@
                     </div>
                   </div>
                 </div>
+                </transition>
               </div>
             </div>
 
@@ -167,12 +170,21 @@ export default {
           }
         }
         &-inner {
-          .carousel-item.active {
+          .carousel-item {
             padding-bottom: 36px;
           }
         }
       }
     }
+  }
+  .slide-fade-enter-active,
+  .slide-fade-leave-active {
+    transition: all .2s ease;
+  }
+
+  .slide-fade-enter, .slide-fade-leave-to /* .slide-fade-leave-active до версии 2.1.8 */ {
+    transform: translateX(10px);
+    opacity: 0;
   }
 }
 </style>

@@ -34,7 +34,8 @@
         </ul>
       </div>
       <div class="services__content">
-        <div class="services__content__shefmontazhnye" :class="{active: activeTab === 'oneTab'}">
+        <transition name="slide-fade" mode="in-out">
+          <div v-show="activeTab === 'oneTab'" :key="activeTab" class="services__content__shefmontazhnye">
           <div class="services__content__shefmontazhnye-title">
             <img src="/main/servicesMain/marks.svg" alt="">
             <p>Шеф-монтаж – это комплекс работ по установке и пусконаладке оборудования, который выполняется специалистами подрядной организации, предприятия заказчика или собственной фирмы-поставщика под наблюдением специалиста (инженера) поставщика и его организационно-техническим руководством </p>
@@ -57,7 +58,9 @@
             </div>
           </div>
         </div>
-        <div class="services__content__shefmontazhnye" :class="{active: activeTab === 'twoTab'}">
+        </transition>
+        <transition name="slide-fade" mode="in-out">
+          <div v-show="activeTab === 'twoTab'" :key="activeTab" class="services__content__shefmontazhnye">
           <div class="row">
             <div
               class="col-lg-3"
@@ -76,7 +79,9 @@
             </div>
           </div>
         </div>
-        <div class="services__content__shefmontazhnye" :class="{active: activeTab === 'threeTab'}">
+        </transition>
+        <transition name="slide-fade" mode="in-out">
+          <div v-show="activeTab === 'threeTab'" :key="activeTab" class="services__content__shefmontazhnye">
           <div class="services__content__shefmontazhnye-title">
             <img src="/main/servicesMain/marks.svg" alt="">
             <p>Шеф-монтаж – это комплекс работ по установке и пусконаладке оборудования, который выполняется специалистами подрядной организации, предприятия заказчика или собственной фирмы-поставщика под наблюдением специалиста (инженера) поставщика и его организационно-техническим руководством </p>
@@ -99,7 +104,9 @@
             </div>
           </div>
         </div>
-        <div class="services__content__shefmontazhnye" :class="{active: activeTab === 'fourTab'}">
+        </transition>
+        <transition name="slide-fade" mode="in-out">
+          <div v-show="activeTab === 'fourTab'" :key="activeTab" class="services__content__shefmontazhnye">
           <div class="services__content__shefmontazhnye-title">
             <img src="/main/servicesMain/marks.svg" alt="">
             <p>Шеф-монтаж – это комплекс работ по установке и пусконаладке оборудования, который выполняется специалистами подрядной организации, предприятия заказчика или собственной фирмы-поставщика под наблюдением специалиста (инженера) поставщика и его организационно-техническим руководством </p>
@@ -122,6 +129,7 @@
             </div>
           </div>
         </div>
+        </transition>
       </div>
       <div class="services-btn">
         <UIButton>все проекты</UIButton>
@@ -218,11 +226,7 @@ export default {
   }
   &__content {
     margin-bottom: 42px;
-    &__shefmontazhnye.active {
-      display: block;
-    }
     &__shefmontazhnye {
-      display: none;
       &-title {
         display: flex;
         justify-content: center;
@@ -268,6 +272,17 @@ export default {
   &-btn {
     display: flex;
     justify-content: flex-end;
+  }
+  .slide-fade-enter-active {
+    transition: all .3s ease;
+  }
+  .slide-fade-leave-active {
+    transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+  }
+  .slide-fade-enter, .slide-fade-leave-to
+    /* .slide-fade-leave-active до версии 2.1.8 */ {
+    transform: translateX(10px);
+    opacity: 0;
   }
 }
 </style>

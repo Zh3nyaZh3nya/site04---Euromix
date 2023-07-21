@@ -28,23 +28,26 @@
               ></button>
             </div>
             <div class="carousel-inner">
-              <div
-                class="carousel-item"
-                v-for="(carouselItem, index) in carouselData"
-                :key="carouselItem.id"
-                :class="{ 'active': index === activeIndex }"
-              >
-                <div class="row">
-                    <div
-                      class="carousel-item-content p-3"
-                      v-for="carouselContent in carouselItem.content"
-                      :key="carouselContent.id"
-                      :class="carouselContent.col"
-                    >
-                      <img :src="carouselContent.img" alt="">
+              <transition name="slide-fade" mode="out-in">
+                <div
+                    class="carousel-item"
+                    v-for="(carouselItem, index) in carouselData"
+                    :key="carouselItem.id"
+                    style="display: block"
+                    v-if="index === activeIndex"
+                  >
+                    <div class="row">
+                        <div
+                          class="carousel-item-content p-3"
+                          v-for="carouselContent in carouselItem.content"
+                          :key="carouselContent.id"
+                          :class="carouselContent.col"
+                        >
+                          <img :src="carouselContent.img" alt="">
+                        </div>
                     </div>
                 </div>
-              </div>
+              </transition>
             </div>
           </div>
         </div>
@@ -253,13 +256,24 @@ export default {
       }
     }
     &-inner {
+      .carousel-item {
+        padding: 36px 60px;
+      }
       .carousel-item.active {
         border-radius: 5px;
         background: #fff;
         box-shadow: 0px 20px 40px 0px #D6E2E4;
-        padding: 36px 60px;
       }
     }
+  }
+  .slide-fade-enter-active,
+  .slide-fade-leave-active {
+    transition: all .2s ease;
+  }
+
+  .slide-fade-enter, .slide-fade-leave-to /* .slide-fade-leave-active до версии 2.1.8 */ {
+    transform: translateX(10px);
+    opacity: 0;
   }
 }
 </style>
