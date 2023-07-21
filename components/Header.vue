@@ -1,40 +1,48 @@
 <template>
   <header>
-    <div class="header container">
-      <div class="header__left col-lg-9">
-        <div class="header__left__mail" @click="copyToClipboard('info@euromix.biz')">
-          <img src="/svgHeader/mail.svg" alt="#" />
-          <span>info@euromix.biz</span>
-        </div>
-        <div class="header__left__phone" @click="copyToClipboard('+7 (4872) 704-838')">
-          <img src="/svgHeader/phone.svg" alt="" />
-          <span>+7 (4872) 704-838</span>
-        </div>
-        <transition name="alert">
-          <Alert v-if="showAlert" :message="alertMessage" :duration="3000" @closeAlert="closeAlert" />
-        </transition>
-        <div class="header__left__call">
-          <span>Заказать звонок</span>
-        </div>
-        <div class="header__left__search">
-          <form class="d-flex" role="search">
-            <input class="form-control" type="search" placeholder="Поиск" aria-label="Поиск">
-            <img src="/svgHeader/search.svg" alt="" />
-          </form>
-        </div>
-      </div>
-      <div class="header__right">
-        <div class="header__right__login col-lg-4">
-          <img src="/svgHeader/login.svg" alt="" />
-          <span>Вход</span>
-        </div>
-        <img src="/line.svg" alt="">
-        <div class="header__right__cart">
-          <img src="/svgHeader/cart.svg" style="width: 28px" alt="" />
-          <span>Корзина</span>
+    <div class="header">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-9">
+            <div class="header__left">
+              <div class="header__left__mail" @click="copyToClipboard('info@euromix.biz')">
+                <img src="/svgHeader/mail.svg" alt="#" />
+                <span>info@euromix.biz</span>
+              </div>
+              <div class="header__left__phone" @click="copyToClipboard('+7 (4872) 704-838')">
+                <img src="/svgHeader/phone.svg" alt="" />
+                <span>+7 (4872) 704-838</span>
+              </div>
+              <div class="header__left__call">
+                <span>Заказать звонок</span>
+              </div>
+              <div class="header__left__search">
+                <form class="d-flex" role="search">
+                  <input class="form-control" type="search" placeholder="Поиск" aria-label="Поиск">
+                  <img src="/svgHeader/search.svg" alt="" />
+                </form>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-3">
+            <div class="header__right">
+              <div class="header__right__login">
+                <img src="/svgHeader/login.svg" alt="" />
+                <span>Вход</span>
+              </div>
+              <img src="/line.svg" alt="">
+              <div class="header__right__cart">
+                <img src="/svgHeader/cart.svg" style="width: 28px" alt="" />
+                <span>Корзина</span>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
+    <transition name="alert">
+      <Alert v-if="showAlert" :message="alertMessage" :duration="3000" @closeAlert="closeAlert" />
+    </transition>
   </header>
 </template>
 
@@ -82,15 +90,12 @@ export default {
 
 <style lang="scss">
 header {
-  display: flex;
   background: #222A31;
   span {
     color: #fff;
     font-weight: 500;
   }
   .header {
-    display: flex;
-    padding-left: 30px;
   }
   .header__left {
     display: flex;
@@ -137,8 +142,21 @@ header {
     justify-content: flex-start;
     align-items: center;
     column-gap: 25px;
-    padding: 0 25px;
-    background: #FF8000;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    z-index: 2;
+    &:before {
+      content: "";
+      z-index: -1;
+      position: absolute;
+      background: #FF8000;
+      width: 100%;
+      height: 100%;
+      transform: skew(20deg);
+      top: 0;
+      right: 20px;
+    }
     &__login {
       display: flex;
       column-gap: 12px;
