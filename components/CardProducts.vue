@@ -12,15 +12,14 @@
             <div class="card__product__header-slider">
               <div id="carouselExample" class="carousel slide">
                 <div class="carousel-inner">
-                  <div
-                    class="carousel-item"
-                    v-for="(item, index) in cardData.sliderImg"
-                    :key="item.id"
-                    style="display: block; float: none"
-                    v-show="index === activeIndex"
-                  >
-                    <img :src="item.img" class="d-block w-100" alt="...">
-                  </div>
+                    <div
+                      class="carousel-item"
+                      v-for="(item, index) in cardData.sliderImg"
+                      :key="item.id"
+                      v-show="index === activeIndex"
+                    >
+                      <img :src="item.img" class="d-block w-100" alt="...">
+                    </div>
                   <div class="carousel-bottom">
                     <div
                       class="carousel-bottom-item"
@@ -141,36 +140,42 @@
                   </li>
                 </ul>
               </div>
-              <div class="card__product__content__table__specifications" v-show="activeTab === 'specifications'">
-                <div
-                  class="card__product__content__table__specifications-item"
-                  v-for="item in cardData.specifications"
-                  :key="item.id"
-                >
-                  <p>{{item.name}}</p>
-                  <p>{{item.text}}</p>
+              <transition name="slide-fade" mode="in-out">
+                <div class="card__product__content__table__specifications" v-show="activeTab === 'specifications'">
+                  <div
+                    class="card__product__content__table__specifications-item"
+                    v-for="item in cardData.specifications"
+                    :key="item.id"
+                  >
+                    <p>{{item.name}}</p>
+                    <p>{{item.text}}</p>
+                  </div>
                 </div>
-              </div>
-              <div class="card__product__content__table__complete" v-show="activeTab === 'completeSets'">
-                <div
-                  class="card__product__content__table__complete-item"
-                  v-for="item in cardData.completeSets"
-                  :key="item.id"
-                >
-                  <p>{{item.name}}</p>
-                  <p>{{item.text}}</p>
+              </transition>
+              <transition name="slide-fade" mode="in-out">
+                <div class="card__product__content__table__complete" v-show="activeTab === 'completeSets'">
+                  <div
+                    class="card__product__content__table__complete-item"
+                    v-for="item in cardData.completeSets"
+                    :key="item.id"
+                  >
+                    <p>{{item.name}}</p>
+                    <p>{{item.text}}</p>
+                  </div>
                 </div>
-              </div>
-              <div class="card__product__content__table__desc" v-show="activeTab === 'desc'">
-                <div
-                  class="card__product__content__table__desc-item"
-                  v-for="item in cardData.desc"
-                  :key="item.id"
-                >
-                  <p>{{item.name}}</p>
-                  <p>{{item.text}}</p>
+              </transition>
+              <transition name="slide-fade" mode="in-out">
+                <div class="card__product__content__table__desc" v-show="activeTab === 'desc'">
+                  <div
+                    class="card__product__content__table__desc-item"
+                    v-for="item in cardData.desc"
+                    :key="item.id"
+                  >
+                    <p>{{item.name}}</p>
+                    <p>{{item.text}}</p>
+                  </div>
                 </div>
-              </div>
+              </transition>
             </div>
             <div
               class="card__product__content-img"
@@ -303,6 +308,8 @@ export default {
         }
         &-item {
           margin-bottom: 30px;
+          display: block;
+          float: none;
         }
         &-control-prev, &-control-next {
           width: 38px;
@@ -453,6 +460,18 @@ export default {
         margin-bottom: 12px;
       }
     }
+  }
+  .slide-fade-enter-active {
+    transition: all .3s ease;
+  }
+  .slide-fade-leave-active {
+    transition: all .1s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+  }
+  .slide-fade-enter, .slide-fade-leave-to
+    /* .slide-fade-leave-active до версии 2.1.8 */ {
+    transform: translateX(-10px);
+    opacity: 0;
+    display: block;
   }
 }
 </style>

@@ -19,15 +19,17 @@
         <p>{{item.nameAcc}}</p>
         <img src="/accImg/arrow.svg" alt="">
       </button>
-      <div v-show="activeAcc === item.id">
-        <div
-          class="accordion-body"
-          v-for="content in item.contentAcc"
-          :key="content.id"
-        >
-          <p>{{content.text}}</p>
+      <transition name="slide-fade">
+        <div v-show="activeAcc === item.id">
+          <div
+            class="accordion-body"
+            v-for="content in item.contentAcc"
+            :key="content.id"
+          >
+            <p>{{content.text}}</p>
+          </div>
         </div>
-      </div>
+      </transition>
     </div>
   </div>
 </template>
@@ -222,10 +224,16 @@ export default {
         font-weight: 500;
         line-height: 24px;
       }
+      img {
+        transition: transform 0.3s ease;
+      }
     }
     .accordion-button.active {
       p {
         color: #FF6B00;
+      }
+      img {
+        transform: rotate(90deg);
       }
     }
   }
@@ -237,6 +245,17 @@ export default {
       font-weight: 400;
       line-height: 14px;
     }
+  }
+  .slide-fade-enter-active {
+    transition: all .2s ease;
+  }
+  .slide-fade-leave-active {
+    transition: all .1s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+  }
+  .slide-fade-enter, .slide-fade-leave-to
+    /* .slide-fade-leave-active до версии 2.1.8 */ {
+    transform: translateY(10px);
+    opacity: 0;
   }
 }
 </style>
