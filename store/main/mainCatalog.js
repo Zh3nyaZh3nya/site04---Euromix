@@ -15,11 +15,11 @@ export const state = () => ({
             sliderImg: [
               {
                 id: 1,
-                img: "/main/catalogMain/img2.png"
+                img: "/main/catalogMain/img3.png"
               },
               {
                 id: 2,
-                img: "/main/catalogMain/img3.png"
+                img: "/main/catalogMain/img2.png"
               },
               {
                 id: 3,
@@ -248,7 +248,7 @@ export const state = () => ({
             sliderImg: [
               {
                 id: 1,
-                img: "/main/catalogMain/img2.png"
+                img: "/main/catalogMain/img4.png"
               },
               {
                 id: 2,
@@ -256,7 +256,7 @@ export const state = () => ({
               },
               {
                 id: 3,
-                img: "/main/catalogMain/img4.png"
+                img: "/main/catalogMain/img2.png"
               },
               {
                 id: 4,
@@ -476,20 +476,20 @@ export const state = () => ({
           subtitle: "Мобильный бетонный завод EUROMIX CROCUS 10.500, производительность до 10 м³/ч, весовая система дозирования цемента и инертных заполнителей",
           img: "/main/catalogMain/img3.png",
           pageContent: {
-            title: "МОБИЛЬНЫЙ БЕТОННЫЙ ЗАВОД EUROMIX CROCUS (КРОКУС) 30/750.4 COMPACT 1",
+            title: "Бетонные заводы серии Euromix Crocus alfa (скип)",
             img: "/main/catalogMain/img1.png",
             sliderImg: [
               {
                 id: 1,
-                img: "/main/catalogMain/img2.png"
+                img: "/main/catalogMain/img6.png"
               },
               {
                 id: 2,
-                img: "/main/catalogMain/img3.png"
+                img: "/main/catalogMain/img7.png"
               },
               {
                 id: 3,
-                img: "/main/catalogMain/img4.png"
+                img: "/main/catalogMain/img8.png"
               },
               {
                 id: 4,
@@ -709,24 +709,24 @@ export const state = () => ({
           subtitle: "Мобильный бетонный завод EUROMIX CROCUS 10.500, производительность до 10 м³/ч, весовая система дозирования цемента и инертных заполнителей",
           img: "/main/catalogMain/img4.png",
           pageContent: {
-            title: "МОБИЛЬНЫЙ БЕТОННЫЙ ЗАВОД EUROMIX CROCUS (КРОКУС) 30/750.4 COMPACT 1",
+            title: "Бетонные заводы серии Euromix Crocus alfa (лента)",
             img: "/main/catalogMain/img1.png",
             sliderImg: [
               {
                 id: 1,
-                img: "/main/catalogMain/img2.png"
+                img: "/main/catalogMain/img1.png"
               },
               {
                 id: 2,
-                img: "/main/catalogMain/img3.png"
+                img: "/main/catalogMain/img2.png"
               },
               {
                 id: 3,
-                img: "/main/catalogMain/img4.png"
+                img: "/main/catalogMain/img3.png"
               },
               {
                 id: 4,
-                img: "/main/catalogMain/img5.png"
+                img: "/main/catalogMain/img4.png"
               },
             ],
             price: "от 32 858 руб",
@@ -942,24 +942,24 @@ export const state = () => ({
           subtitle: "Мобильный бетонный завод EUROMIX CROCUS 10.500, производительность до 10 м³/ч, весовая система дозирования цемента и инертных заполнителей",
           img: "/main/catalogMain/img5.png",
           pageContent: {
-            title: "МОБИЛЬНЫЙ БЕТОННЫЙ ЗАВОД EUROMIX CROCUS (КРОКУС) 30/750.4 COMPACT 1",
+            title: "Автомиксер серии Euromix Rolltruck",
             img: "/main/catalogMain/img1.png",
             sliderImg: [
               {
                 id: 1,
-                img: "/main/catalogMain/img2.png"
-              },
-              {
-                id: 2,
-                img: "/main/catalogMain/img3.png"
-              },
-              {
-                id: 3,
                 img: "/main/catalogMain/img4.png"
               },
               {
-                id: 4,
+                id: 2,
                 img: "/main/catalogMain/img5.png"
+              },
+              {
+                id: 3,
+                img: "/main/catalogMain/img6.png"
+              },
+              {
+                id: 4,
+                img: "/main/catalogMain/img7.png"
               },
             ],
             price: "от 32 858 руб",

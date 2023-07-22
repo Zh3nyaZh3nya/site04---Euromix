@@ -14,7 +14,7 @@
             <img src="/line.svg" alt="">
           </li>
           <li class="nav-link">
-            <nuxt-link to="#">Каталог</nuxt-link>
+            <nuxt-link to="/catalog">Каталог</nuxt-link>
             <img src="/line.svg" alt="">
           </li>
           <li class="nav-link">

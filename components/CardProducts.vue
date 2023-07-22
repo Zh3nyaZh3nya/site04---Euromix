@@ -3,7 +3,7 @@
     <div class="container">
       <div class="card__product-path">
         <nuxt-link to="/">Главная > </nuxt-link>
-        <nuxt-link to="#">Каталог > </nuxt-link>
+        <nuxt-link to="/catalog">Каталог > </nuxt-link>
         <span>{{cardData.title}}</span>
       </div>
       <div class="card__product__header">
@@ -291,6 +291,10 @@ export default {
       color: #9B9B9B;
       font-size: 16px;
       font-weight: 500;
+      &:hover {
+        color: #000;
+        border-bottom: 1px solid #9B9B9B;
+      }
     }
   }
   &__header {
