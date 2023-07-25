@@ -107,6 +107,15 @@ p {
   margin: 0;
 }
 
+input::placeholder {
+  color: #767373;
+  font-size: 15px;
+  font-weight: 400;
+}
+li {
+  list-style-type: none;
+}
+
 /* анимация для алерта */
 
 .alert-enter-active {

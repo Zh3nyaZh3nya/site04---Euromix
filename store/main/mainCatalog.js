@@ -10,6 +10,7 @@ export const state = () => ({
           subtitle: "Мобильный бетонный завод EUROMIX CROCUS 10.500, производительность до 10 м³/ч, весовая система дозирования цемента и инертных заполнителей",
           img: "/main/catalogMain/img1.png",
           pageContent: {
+            article: 1,
             title: "МОБИЛЬНЫЙ БЕТОННЫЙ ЗАВОД EUROMIX CROCUS (КРОКУС) 30/750.4 COMPACT 1",
             img: "/main/catalogMain/img1.png",
             sliderImg: [
@@ -30,7 +31,7 @@ export const state = () => ({
                 img: "/main/catalogMain/img5.png"
               },
             ],
-            price: "от 32 858 руб",
+            price: 32858,
             specifications: [
               {
                 id: 1,
@@ -233,7 +234,8 @@ export const state = () => ({
                 img: "/cardImg/image2.png",
                 link: "",
               },
-            ]
+            ],
+            count: 1,
           }
         },
         {
@@ -243,6 +245,7 @@ export const state = () => ({
           subtitle: "Мобильный бетонный завод EUROMIX CROCUS 10.500, производительность до 10 м³/ч, весовая система дозирования цемента и инертных заполнителей",
           img: "/main/catalogMain/img2.png",
           pageContent: {
+            article: 2,
             title: "Бетонные заводы серии Euromix Crocus Compact",
             img: "/main/catalogMain/img1.png",
             sliderImg: [
@@ -263,7 +266,7 @@ export const state = () => ({
                 img: "/main/catalogMain/img5.png"
               },
             ],
-            price: "от 32 858 руб",
+            price: 54354,
             specifications: [
               {
                 id: 1,
@@ -466,7 +469,8 @@ export const state = () => ({
                 img: "/cardImg/image2.png",
                 link: "",
               },
-            ]
+            ],
+            count: 1,
           }
         },
         {
@@ -476,6 +480,7 @@ export const state = () => ({
           subtitle: "Мобильный бетонный завод EUROMIX CROCUS 10.500, производительность до 10 м³/ч, весовая система дозирования цемента и инертных заполнителей",
           img: "/main/catalogMain/img3.png",
           pageContent: {
+            article: 3,
             title: "Бетонные заводы серии Euromix Crocus alfa (скип)",
             img: "/main/catalogMain/img1.png",
             sliderImg: [
@@ -496,7 +501,7 @@ export const state = () => ({
                 img: "/main/catalogMain/img5.png"
               },
             ],
-            price: "от 32 858 руб",
+            price: 13452,
             specifications: [
               {
                 id: 1,
@@ -699,7 +704,8 @@ export const state = () => ({
                 img: "/cardImg/image2.png",
                 link: "",
               },
-            ]
+            ],
+            count: 1,
           }
         },
         {
@@ -709,6 +715,7 @@ export const state = () => ({
           subtitle: "Мобильный бетонный завод EUROMIX CROCUS 10.500, производительность до 10 м³/ч, весовая система дозирования цемента и инертных заполнителей",
           img: "/main/catalogMain/img4.png",
           pageContent: {
+            article: 4,
             title: "Бетонные заводы серии Euromix Crocus alfa (лента)",
             img: "/main/catalogMain/img1.png",
             sliderImg: [
@@ -729,7 +736,7 @@ export const state = () => ({
                 img: "/main/catalogMain/img4.png"
               },
             ],
-            price: "от 32 858 руб",
+            price: 29000,
             specifications: [
               {
                 id: 1,
@@ -932,7 +939,8 @@ export const state = () => ({
                 img: "/cardImg/image2.png",
                 link: "",
               },
-            ]
+            ],
+            count: 1,
           }
         },
         {
@@ -942,6 +950,7 @@ export const state = () => ({
           subtitle: "Мобильный бетонный завод EUROMIX CROCUS 10.500, производительность до 10 м³/ч, весовая система дозирования цемента и инертных заполнителей",
           img: "/main/catalogMain/img5.png",
           pageContent: {
+            article: 5,
             title: "Автомиксер серии Euromix Rolltruck",
             img: "/main/catalogMain/img1.png",
             sliderImg: [
@@ -962,7 +971,7 @@ export const state = () => ({
                 img: "/main/catalogMain/img7.png"
               },
             ],
-            price: "от 32 858 руб",
+            price: 65440,
             specifications: [
               {
                 id: 1,
@@ -1165,7 +1174,8 @@ export const state = () => ({
                 img: "/cardImg/image2.png",
                 link: "",
               },
-            ]
+            ],
+            count: 1,
           }
         },
       ],
@@ -1211,13 +1221,13 @@ export const state = () => ({
 export const mutations = {
   SET_SELECT_DATA(state, data) {
     state.selectData = data;
-  }
+  },
 }
 
 export const actions = {
   setSelectData({commit}, data) {
     commit('SET_SELECT_DATA', data)
-  }
+  },
 }
 
 export const getters = {

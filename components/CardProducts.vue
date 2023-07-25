@@ -69,7 +69,7 @@
                     <span>Под заказ</span>
                   </div>
                   <div class="card__product__header__content-price">
-                    <p>{{cardData.price}}</p>
+                    <p>от {{cardData.price}} руб</p>
                   </div>
                   <div class="card__product__header__content-season">
                     <p>Сезонное исполнение:</p>
@@ -101,7 +101,7 @@
                       Чат с менеджером WhatsApp
                     </UIButton>
                   </div>
-                  <div class="card__product__header__content-btn-cart">
+                  <div class="card__product__header__content-btn-cart" @click="selectCard(cardData)">
                     <UIButton class="cart-btn">
                       <img src="/cardImg/cart.svg" alt="">
                       заказать сейчас
@@ -215,6 +215,8 @@
 
 <script>
 import UIButton from "@/components/UI/UIButton";
+import {mapActions} from "vuex";
+
 export default {
   name: "Card",
   components: {UIButton},
@@ -279,6 +281,10 @@ export default {
     goToSlide(index) {
       this.activeIndex = index;
     },
+    selectCard(data) {
+      console.log(data)
+      this.$store.dispatch('cart/cart/selectCard', data)
+    }
   }
 }
 </script>

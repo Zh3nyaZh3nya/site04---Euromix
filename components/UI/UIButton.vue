@@ -45,4 +45,15 @@ export default {
     width: 35px;
   }
 }
+.btn-white {
+  background: white;
+  color: #000;
+  font-size: 16px;
+  font-weight: 700;
+  text-transform: none;
+  border-radius: 100px;
+  border: 1px solid #D9D9D9;
+  padding: 16px 34px 18px 34px;
+  text-transform: uppercase;
+}
 </style>

@@ -31,10 +31,12 @@
                 <span>Вход</span>
               </div>
               <img src="/line.svg" alt="">
-              <div class="header__right__cart">
-                <img src="/svgHeader/cart.svg" style="width: 28px" alt="" />
-                <span>Корзина</span>
-              </div>
+              <nuxt-link to="/cart">
+                <div class="header__right__cart">
+                  <img src="/svgHeader/cart.svg" style="width: 28px" alt="" />
+                  <span>Корзина</span>
+                </div>
+              </nuxt-link>
             </div>
           </div>
         </div>
