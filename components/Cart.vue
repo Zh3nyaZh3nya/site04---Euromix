@@ -70,17 +70,17 @@
       <div class="cart__content-second">
         <div class="row">
           <div class="col-lg-4">
-            <div class="cart__content-second-title">
+            <div class="cart__content-title">
               <p>Выберите плательщика из списка</p>
             </div>
-            <div class="cart__content-second-acc">
+            <div class="cart__content-acc">
               <div
-                class="cart__content-second-acc-item"
+                class="cart__content-acc-item"
                 v-for="(item, index) in payerData"
                 :key="item.id"
               >
                 <button
-                  class="cart__content-second-acc-item-btn"
+                  class="cart__content-acc-item-btn"
                   @click="activeAcc = (activeAcc === index) ? null : index"
                 >
                   <div>
@@ -89,17 +89,17 @@
                   </div>
                   <img src="/cartImg/arrow.svg" alt="" />
                 </button>
-                <div class="cart__content-second-acc-item-body" v-show="activeAcc === index">
-                  <div class="cart__content-second-acc-item-body-text">
+                <div class="cart__content-acc-item-body" v-show="activeAcc === index">
+                  <div class="cart__content-acc-item-body-text">
                     <p>Физическое лицо</p>
                     <p>{{item.fio}}</p>
                     <p>{{item.phone}}</p>
                   </div>
-                  <div class="cart__content-second-acc-item-body-btn">
-                    <button @click="selectPayer(index, item)">
+                  <div class="cart__content-acc-item-body-btn">
+                    <button @click="selectPayerAndAddress(index, item, 'payer')">
                       <img src="/cartImg/edit.svg" alt=""/>
                     </button>
-                    <button @click="deleteSelectPayer(index)">
+                    <button @click="deleteSelectPayerAndAddress(index, 'payer')">
                       <img src="/cartImg/close1.svg" alt="" />
                     </button>
                   </div>
@@ -108,10 +108,10 @@
             </div>
           </div>
           <div class="col-lg-4">
-            <div class="cart__content-second-title">
+            <div class="cart__content-title">
               <p>Добавьте новые реквизиты:</p>
             </div>
-            <div class="cart__content-second-form">
+            <div class="cart__content-form">
               <form @submit.prevent="" action="#">
                 <li class="nav-item dropdown">
                   <p
@@ -129,7 +129,7 @@
                       v-for="(item, index) in payerData"
                       :key="item.id"
                     >
-                      <button @click="selectPayer(index, item), activeDrop = !activeDrop">
+                      <button @click="selectPayerAndAddress(index, item), activeDrop = !activeDrop">
                         <p class="dropdown-item">{{item.fio}}</p>
                       </button>
                     </li>
@@ -140,15 +140,144 @@
                 <button class="btn-white" @click="savePayerAndSelectPayer">Сохранить и продолжить</button>
               </form>
             </div>
-            <div class="cart__content-second-btn">
+            <div class="cart__content-btn">
               <UIButton class="btn-white">назад</UIButton>
               <UIButton>продолжить</UIButton>
             </div>
           </div>
         </div>
       </div>
-      <div class="cart__content-third"></div>
-      <div class="cart__content-fourth"></div>
+      <div class="cart__content-third">
+        <div class="row">
+          <div class="col-lg-4">
+            <div class="cart__content-title">
+              <p>Выберите адрес из списка:</p>
+            </div>
+            <div class="cart__content-acc">
+              <div
+                class="cart__content-acc-item"
+                v-for="(item, index) in addressData"
+                :key="item.id"
+              >
+                <button
+                  class="cart__content-acc-item-btn"
+                  @click="activeAcc = (activeAcc === index) ? null : index"
+                >
+                  <div>
+                    <p>г. {{ item.city }}</p>
+                    <div>
+                      <span>Ул. {{ item.street }}, Д. {{ item.home }}, Кв. {{ item.flat }}</span>
+                    </div>
+                  </div>
+                  <img src="/cartImg/arrow.svg" alt="" />
+                </button>
+                <div class="cart__content-acc-item-body" v-show="activeAcc === index">
+                  <div class="cart__content-acc-item-body-text">
+                    <p>г. {{ item.city }}</p>
+                    <div>
+                      <span>Ул. {{ item.street }}, Д. {{ item.home }}, Кв. {{ item.flat }}</span>
+                    </div>
+                  </div>
+                  <div class="cart__content-acc-item-body-btn">
+                    <button @click="selectPayerAndAddress(index, item, 'address')">
+                      <img src="/cartImg/edit.svg" alt=""/>
+                    </button>
+                    <button @click="deleteSelectPayerAndAddress(index, 'address')">
+                      <img src="/cartImg/close1.svg" alt="" />
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4">
+            <div class="cart__content-title">
+              <p>Добавьте новый адрес:</p>
+            </div>
+            <div class="cart__content-form">
+              <form @submit.prevent="" action="#">
+                <input type="text" placeholder="Город:" v-model="address_city">
+                <input type="text" placeholder="Улица:" v-model="address_street">
+                <div class="cart__content-form-flex">
+                  <input type="number" placeholder="Дом:" v-model="address_home">
+                  <input type="number" placeholder="Квартира:" v-model="address_flat">
+                </div>
+                <textarea placeholder="Комментарий курьеру:" v-model="address_comment"></textarea>
+                <button class="btn-white" @click="saveAndSelectAddress">Сохранить и продолжить</button>
+              </form>
+            </div>
+          </div>
+          <div class="col-lg-4">
+            <div class="cart__content-delivery">
+              <div class="cart__content-title">
+                <p>Выберете службу доставки :</p>
+              </div>
+              <div class="row">
+                <div
+                  class="col-lg-6"
+                  v-for="item in deliveryData"
+                  :key="item.id"
+                >
+                  <div class="input-radio-custom">
+                    <input
+                      type="radio"
+                      v-model="selectedDeliveryOption"
+                      :name="'deliveryOption'"
+                      :value="item.id"
+                      :id="'deliveryOption' + item.id"
+                    />
+                    <label :for="'deliveryOption' + item.id"></label>
+                    <img :src="item.img" alt="" />
+                  </div>
+                </div>
+              </div>
+              <div class="cart__content-delivery-text">
+                <p>Стоимость доставки указана по информации от транспортной компании и рассчитана исходя из данных указанных при оформлении заказа.
+                  Она может быть изменена при смене адреса доставки, плательщика, смены расценок транспортной компании.
+                  Стоимость доставки будет включена в счет заказа.
+                </p>
+                <span>
+                  Стоимость доставки: 1000 руб.
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="cart__content-btn" style="justify-content: flex-end">
+          <UIButton class="btn-white">назад</UIButton>
+          <UIButton>продолжить</UIButton>
+        </div>
+      </div>
+      <div class="cart__content-fourth">
+        <div class="row">
+          <div
+            class="col-lg-3"
+            v-for="item in payment"
+            :key="payment.id"
+          >
+            <div class="cart__content-payment" style="margin-bottom: 50px">
+              <div class="input-radio-custom" style="align-items: center; column-gap: 25px">
+                <input
+                  type="radio"
+                  v-model="selectedPayment"
+                  :name="'selectedPayment'"
+                  :value="item.id"
+                  :id="'optionPayment' + item.id"
+                />
+                <label :for="'optionPayment' + item.id"></label>
+                <div style="display: flex; flex-direction: column; align-items: center">
+                  <img :src="item.img" alt="" style="width: 75px"/>
+                  <p style="width: 150px; text-align: center">{{item.text}}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="cart__content-btn" style="justify-content: flex-end">
+          <UIButton class="btn-white">назад</UIButton>
+          <UIButton>продолжить</UIButton>
+        </div>
+      </div>
       <div class="cart__content-fifth"></div>
     </div>
   </div>
@@ -167,6 +296,14 @@ export default {
       default: () => [],
     },
     payerData: {
+      type: Array,
+      default: () => [],
+    },
+    addressData: {
+      type: Array,
+      default: () => [],
+    },
+    deliveryData: {
       type: Array,
       default: () => [],
     }
@@ -195,6 +332,13 @@ export default {
           text: "Подтверждение",
         },
       ],
+      payment: [
+        {
+          id: 1,
+          img: "/cartImg/payment1.svg",
+          text: "Он-лайн оплата банковской картой",
+        }
+      ],
       count: 1,
       activeAcc: null,
       activeClass: "active",
@@ -204,7 +348,14 @@ export default {
       selectedFio: null,
       selectPayerTriggered: false,
       indexTab: null,
-      dataTab: null
+      dataTab: null,
+      address_city: "",
+      address_street: "",
+      address_home: "",
+      address_flat: "",
+      address_comment: "",
+      selectedDeliveryOption: null,
+      selectedPayment: null,
     }
   },
   methods: {
@@ -236,16 +387,60 @@ export default {
         this.selectPayerTriggered = false;
       }
     },
-    selectPayer(index, data) {
+    selectPayerAndAddress(index, data, check) {
       this.selectPayerTriggered = true;
-      this.dataTab = data;
-      this.fio_payer = data.fio;
-      this.phone_payer = data.phone
+      if(check === 'payer') {
+        this.dataTab = data;
+        this.fio_payer = data.fio;
+        this.phone_payer = data.phone
+      } else if (check === 'address') {
+        this.dataTab = data;
+        this.address_city = data.city;
+        this.address_street = data.street;
+        this.address_home = data.home;
+        this.address_flat = data.flat;
+      }
       this.indexTab = index
-      console.log(this.dataTab)
+      console.log(data)
     },
-    deleteSelectPayer(index) {
-      this.$store.commit('cart/payer/DELETE_PAYER', index)
+    deleteSelectPayerAndAddress(index, check) {
+      if(check === 'payer') {
+        this.$store.commit('cart/payer/DELETE_PAYER', index)
+      } else if (check === 'address') {
+        this.$store.commit('cart/address/DELETE_ADDRESS', index)
+      }
+    },
+    saveAndSelectAddress() {
+      if (this.address_city !== "" && this.address_street !== "" && this.address_home !== "" && this.address_flat !== "")
+      {
+        const address = {
+          city: this.address_city,
+          street: this.address_street,
+          home: this.address_home,
+          flat: this.address_flat,
+          comment: this.address_comment,
+        };
+        if (this.selectPayerTriggered === false) {
+          this.$store.commit('cart/address/UPDATE_ADDRESS', address);
+        } else {
+          let index = this.indexTab;
+          let newData  = {
+            city: this.address_city,
+            street: this.address_street,
+            home: this.address_home,
+            flat: this.address_flat,
+            comment: this.address_comment
+          };
+          this.$store.commit('cart/address/CHANGE_ADDRESS', { index, newData });
+        }
+        this.address_city = "";
+        this.address_street = "";
+        this.address_home = "";
+        this.address_flat = "";
+        this.address_comment = ""
+
+        this.selectPayerTriggered = false;
+      }
     }
   },
   computed: {
@@ -356,106 +551,6 @@ export default {
       }
     }
     &-second {
-      &-title {
-        margin-bottom: 16px;
-        p {
-          color: #000;
-          font-size: 20px;
-          font-weight: 400;
-        }
-      }
-      &-acc {
-        &-item {
-          margin-bottom: 10px;
-          &-btn {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            text-align: start;
-            padding: 6px 18px;
-            width: 100%;
-            border-radius: 5px;
-            background: #222A31;
-            p {
-              color: #FFF;
-              font-size: 18px;
-              font-weight: 400;
-              margin-bottom: 4px;
-            }
-          }
-          &-body {
-            border: 1px solid #D9D9D9;
-            background: #FFF;
-            padding: 11px 12px 21px 18px;
-            display: flex;
-            justify-content: space-between;
-            &-text {
-              p {
-                color: #222A31;
-                font-size: 15px;
-                font-weight: 400;
-                margin-bottom: 2px;
-              }
-            }
-            &-btn {
-              display: flex;
-              justify-content: center;
-              align-items: flex-end;
-              column-gap: 11px;
-              button {
-                display: flex;
-                align-items: center;
-              }
-            }
-          }
-        }
-      }
-      &-form {
-        form {
-          display: flex;
-          flex-direction: column;
-          .nav-item.dropdown {
-            border-radius: 5px;
-            border: 1px solid #C9C6C6;
-            background: #FFF;
-            margin-bottom: 13px;
-            padding-left: 5px;
-            .dropdown-toggle {
-              position: relative;
-              color: #767373;
-              font-size: 15px;
-              font-weight: 400;
-              &::after {
-                position: absolute;
-                right: 14px;
-                background: url('/cartImg/arrowInput.svg') no-repeat;
-                width: 14px;
-                height: 14px;
-                border: none;
-              }
-            }
-            ul {
-              width: 100%;
-            }
-          }
-          input {
-            border-radius: 5px;
-            border: 1px solid #C9C6C6;
-            background: #FFF;
-            padding: 9px 23px;
-            margin-bottom: 13px;
-            &::placeholder {
-              color: #767373;
-              font-weight: 400;
-              line-height: 30px;
-            }
-          }
-          .btn-white {
-            padding: 15px 34px;
-            margin-bottom: 80px;
-          }
-        }
-      }
       &-btn {
         display: flex;
         column-gap: 13px;
@@ -463,6 +558,153 @@ export default {
           padding: 15px 47px;
         }
       }
+    }
+  }
+  .cart__content-title {
+    margin-bottom: 16px;
+    p {
+      color: #000;
+      font-size: 20px;
+      font-weight: 400;
+    }
+  }
+  .cart__content-acc {
+    &-item {
+      margin-bottom: 10px;
+      &-btn {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        text-align: start;
+        padding: 6px 18px;
+        width: 100%;
+        border-radius: 5px;
+        background: #222A31;
+        p, span {
+          color: #FFF;
+          font-size: 18px;
+          font-weight: 400;
+          margin-bottom: 4px;
+        }
+      }
+      &-body {
+        border: 1px solid #D9D9D9;
+        background: #FFF;
+        padding: 11px 12px 21px 18px;
+        display: flex;
+        justify-content: space-between;
+        &-text {
+          p, span {
+            color: #222A31;
+            font-size: 15px;
+            font-weight: 400;
+            margin-bottom: 2px;
+          }
+        }
+        &-btn {
+          display: flex;
+          justify-content: center;
+          align-items: flex-end;
+          column-gap: 11px;
+          button {
+            display: flex;
+            align-items: center;
+          }
+        }
+      }
+    }
+  }
+  .cart__content-form {
+    &-flex {
+      display: flex;
+      column-gap: 13px;
+      input {
+        width: 180px;
+      }
+    }
+    form {
+      display: flex;
+      flex-direction: column;
+      .nav-item.dropdown {
+        border-radius: 5px;
+        border: 1px solid #C9C6C6;
+        background: #FFF;
+        margin-bottom: 13px;
+        padding-left: 5px;
+        height: 47px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        position: relative;
+        .dropdown-toggle {
+          color: #767373;
+          font-size: 15px;
+          font-weight: 400;
+          &::after {
+            position: absolute;
+            right: 14px;
+            background: url('/cartImg/arrowInput.svg') no-repeat;
+            width: 14px;
+            height: 14px;
+            border: none;
+          }
+        }
+        ul {
+          width: 100%;
+        }
+      }
+      input {
+        border-radius: 5px;
+        border: 1px solid #C9C6C6;
+        background: #FFF;
+        padding: 9px 23px;
+        margin-bottom: 13px;
+        height: 47px;
+        &::placeholder {
+          color: #767373;
+          font-weight: 400;
+          line-height: 30px;
+        }
+      }
+      .btn-white {
+        padding: 15px 34px;
+        margin-bottom: 80px;
+      }
+      textarea {
+        height: 80px;
+        padding: 10px 23px;
+        margin-bottom: 13px;
+        &::placeholder {
+          color: #767373;
+        }
+        font-size: 15px;
+        font-weight: 400;
+      }
+    }
+  }
+  .cart__content-delivery {
+    img {
+      margin-bottom: 26px;
+    }
+    &-text {
+      margin-left: 30px;
+      p {
+        color: #767373;
+        font-size: 14px;
+        font-weight: 400;
+        margin-bottom: 30px;
+      }
+      span {
+        font-size: 20px;
+        font-weight: 500;
+      }
+    }
+  }
+  .cart__content-btn {
+    display: flex;
+    column-gap: 13px;
+    .btn-white {
+      padding: 15px 47px;
     }
   }
 }

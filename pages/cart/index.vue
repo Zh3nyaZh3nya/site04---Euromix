@@ -1,6 +1,11 @@
 <template>
   <div>
-    <Cart :cart-data="getCartData" :payer-data="getPayerData"/>
+    <Cart
+      :cart-data="getCartData"
+      :payer-data="getPayerData"
+      :address-data="getAddressData"
+      :delivery-data="getDeliveryData"
+    />
   </div>
 </template>
 
@@ -10,7 +15,9 @@ export default {
   name: "index",
   computed: {
     ...mapGetters('cart/cart', ['getCartData']),
-    ...mapGetters('cart/payer', ['getPayerData'])
+    ...mapGetters('cart/payer', ['getPayerData']),
+    ...mapGetters('cart/address', ['getAddressData']),
+    ...mapGetters('cart/address', ['getDeliveryData'])
   }
 }
 </script>
