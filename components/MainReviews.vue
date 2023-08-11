@@ -31,28 +31,36 @@
               <div class="carousel-inner">
                 <transition name="slide-fade" mode="out-in">
                   <div
-                  class="carousel-item"
-                  v-for="(carouselItem, index) in carouselData"
-                  :key="carouselItem.id"
-                  style="display: block"
-                  v-if="index === activeIndex"
-                >
-                  <div class="row">
-                    <div
-                      class="carousel-item-content"
-                      v-for="carouselContent in carouselItem.content"
-                      :key="carouselContent.id"
-                      :class="carouselContent.col"
-                    >
-                      <img :src="carouselContent.img" alt="">
-                      <p>{{carouselContent.text}}</p>
+                    class="carousel-item"
+                    v-for="(carouselItem, index) in carouselData"
+                    :key="carouselItem.id"
+                    style="display: block"
+                    v-if="index === activeIndex"
+                  >
+                    <div class="row">
+                      <div
+                        class="carousel-item-content"
+                        v-for="carouselContent in carouselItem.content"
+                        :key="carouselContent.id"
+                        :class="carouselContent.col"
+                        @click="increaseImg(carouselContent.imgIncrease), increaseActive = true"
+                      >
+                        <img :src="carouselContent.img" alt="">
+                        <p>{{carouselContent.text}}</p>
+                      </div>
+                      <div class="carousel-item-increase" v-show="increaseActive">
+                        <button class="close" @click="increaseActive = false">
+                          <img src="/cartImg/close1.svg" alt="">
+                        </button>
+                        <div class="carousel-item-increase-img">
+                          <img :src="activeImg" alt="">
+                        </div>
+                      </div>
                     </div>
                   </div>
-                </div>
                 </transition>
               </div>
             </div>
-
           </div>
         </div>
       </div>
@@ -67,6 +75,8 @@ export default {
   data() {
     return {
       activeIndex: 0,
+      increaseActive: false,
+      activeImg: "",
       carouselData: [
         {
           id: 1,
@@ -74,16 +84,19 @@ export default {
             {
               id: 1,
               img: "/main/reviewsMain/sert.png",
+              imgIncrease: "/main/reviewsMain/sertIncrease.png",
               col: "col-lg-4",
             },
             {
               id: 2,
               img: "/main/reviewsMain/sert.png",
+              imgIncrease: "/main/reviewsMain/sertIncrease.png",
               col: "col-lg-4",
             },
             {
               id: 3,
               img: "/main/reviewsMain/sert.png",
+              imgIncrease: "/main/reviewsMain/sertIncrease.png",
               col: "col-lg-4",
             },
           ]
@@ -94,6 +107,7 @@ export default {
             {
               id: 1,
               img: "/main/reviewsMain/sert.png",
+              imgIncrease: "/main/reviewsMain/sertIncrease.png",
               col: "col-lg-4",
             },
             {
@@ -104,6 +118,7 @@ export default {
             {
               id: 3,
               img: "/main/reviewsMain/sert.png",
+              imgIncrease: "/main/reviewsMain/sertIncrease.png",
               col: "col-lg-4",
             },
           ]
@@ -114,6 +129,9 @@ export default {
   methods: {
     setActiveIndex(index) {
       this.activeIndex = index;
+    },
+    increaseImg(item) {
+      this.activeImg = item;
     }
   }
 }
@@ -172,6 +190,56 @@ export default {
         &-inner {
           .carousel-item {
             padding-bottom: 36px;
+            &-content {
+              &:hover {
+                cursor: pointer;
+                &::before {
+                  content: "";
+                  position: absolute;
+                  width: 203px;
+                  height: 100%;
+                  top: 0;
+                  left: 0;
+                  z-index: 2;
+                  border-radius: 5px;
+                  opacity: 0.9;
+                  transition: opacity 0.3s;
+                  background: #FF6B00;
+                  background-image: url("/main/reviewsMain/increase.svg");
+                  background-repeat: no-repeat;
+                  background-position: center;
+                }
+
+              }
+              img {
+                position: relative;
+                max-width: 100%;
+              }
+            }
+            &-increase {
+              position: fixed;
+              top: 0;
+              left: 0;
+              width: 100%;
+              height: 100%;
+              background: #000;
+              opacity: .8;
+              z-index: 100;
+              .close {
+                position: absolute;
+                right: 50px;
+                top: 25px;
+                img {
+                  filter: brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(2%) hue-rotate(201deg) brightness(107%) contrast(101%);
+                  width: 30px;
+                }
+              }
+              &-img {
+                display: flex;
+                justify-content: center;
+                margin-top: 60px;
+              }
+            }
           }
         }
       }
