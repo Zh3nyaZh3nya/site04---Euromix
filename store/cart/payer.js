@@ -1,5 +1,8 @@
 export const state = () => ({
-  payerData: []
+  payerData: [],
+  selectedPayer: {
+    id: 1,
+  }
 })
 
 export const mutations = {
@@ -13,6 +16,9 @@ export const mutations = {
   },
   DELETE_PAYER(state, index) {
     state.payerData.splice(index, 1)
+  },
+  SELECTED_PAYER(state, item) {
+    state.selectedPayer = Object.assign({}, state.selectedPayer, item);
   }
 }
 
@@ -23,4 +29,5 @@ export const actions = {
 export const getters = {
   getPayerData: (state) => state.payerData,
   getSelectData: (state) => state.payerData.fio,
+  getSelectedPayer: (state) => state.selectedPayer,
 }

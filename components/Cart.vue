@@ -17,7 +17,7 @@
       <hr>
     </div>
     <div class="cart__content">
-      <div class="cart__content-first">
+      <div class="cart__content-first" v-if="currentStep === 'first'">
         <table class="table table-responsive-lg">
           <thead class="table-light">
             <tr>
@@ -58,16 +58,16 @@
             <p>Всего: {{allPrice}} руб.</p>
           </div>
           <div class="cart__content-first-bottom-btn">
-            <UIButton>
+            <button @click="actualStep('second')" class="custom-btn">
               продолжить
-            </UIButton>
+            </button>
             <UIButton class="btn-white">
               Отменить
             </UIButton>
           </div>
         </div>
       </div>
-      <div class="cart__content-second">
+      <div class="cart__content-second" v-else-if="currentStep === 'second'">
         <div class="row">
           <div class="col-lg-4">
             <div class="cart__content-title">
@@ -91,12 +91,14 @@
                 </button>
                 <div class="cart__content-acc-item-body" v-show="activeAcc === index">
                   <div class="cart__content-acc-item-body-text">
-                    <p>Физическое лицо</p>
-                    <p>{{item.fio}}</p>
-                    <p>{{item.phone}}</p>
+                    <button @click="selectPayerAndAddress(item, 'payer'), actualStep('third')">
+                      <p>Физическое лицо</p>
+                      <p>{{item.fio}}</p>
+                      <p>{{item.phone}}</p>
+                    </button>
                   </div>
                   <div class="cart__content-acc-item-body-btn">
-                    <button @click="selectPayerAndAddress(index, item, 'payer')">
+                    <button @click="changePayerAndAddress(index, item, 'payer')">
                       <img src="/cartImg/edit.svg" alt=""/>
                     </button>
                     <button @click="deleteSelectPayerAndAddress(index, 'payer')">
@@ -129,7 +131,7 @@
                       v-for="(item, index) in payerData"
                       :key="item.id"
                     >
-                      <button @click="selectPayerAndAddress(index, item), activeDrop = !activeDrop">
+                      <button @click="changePayerAndAddress(index, item), activeDrop = !activeDrop">
                         <p class="dropdown-item">{{item.fio}}</p>
                       </button>
                     </li>
@@ -137,17 +139,17 @@
                 </li>
                 <input type="text" placeholder="Фио плательщика" v-model="fio_payer">
                 <input type="number" placeholder="Телефон плательщика" v-model="phone_payer">
-                <button class="btn-white" @click="savePayerAndSelectPayer">Сохранить и продолжить</button>
+                <button class="btn-white" @click="savePayerAndChangePayer">Сохранить и продолжить</button>
               </form>
             </div>
             <div class="cart__content-btn">
-              <UIButton class="btn-white">назад</UIButton>
-              <UIButton>продолжить</UIButton>
+              <button class="btn-white" @click="actualStep('first')">назад</button>
+              <button class="custom-btn" @click="actualStep('third')">продолжить</button>
             </div>
           </div>
         </div>
       </div>
-      <div class="cart__content-third">
+      <div class="cart__content-third" v-else-if="currentStep === 'third'">
         <div class="row">
           <div class="col-lg-4">
             <div class="cart__content-title">
@@ -173,13 +175,15 @@
                 </button>
                 <div class="cart__content-acc-item-body" v-show="activeAcc === index">
                   <div class="cart__content-acc-item-body-text">
-                    <p>г. {{ item.city }}</p>
-                    <div>
-                      <span>Ул. {{ item.street }}, Д. {{ item.home }}, Кв. {{ item.flat }}</span>
-                    </div>
+                    <button @click="selectPayerAndAddress(item, 'address')">
+                      <p>г. {{ item.city }}</p>
+                      <div>
+                        <span>Ул. {{ item.street }}, Д. {{ item.home }}, Кв. {{ item.flat }}</span>
+                      </div>
+                    </button>
                   </div>
                   <div class="cart__content-acc-item-body-btn">
-                    <button @click="selectPayerAndAddress(index, item, 'address')">
+                    <button @click="changePayerAndAddress(index, item, 'address')">
                       <img src="/cartImg/edit.svg" alt=""/>
                     </button>
                     <button @click="deleteSelectPayerAndAddress(index, 'address')">
@@ -203,7 +207,7 @@
                   <input type="number" placeholder="Квартира:" v-model="address_flat">
                 </div>
                 <textarea placeholder="Комментарий курьеру:" v-model="address_comment"></textarea>
-                <button class="btn-white" @click="saveAndSelectAddress">Сохранить и продолжить</button>
+                <button class="btn-white" @click="saveAddressAndChangeAddress">Сохранить и продолжить</button>
               </form>
             </div>
           </div>
@@ -223,7 +227,7 @@
                       type="radio"
                       v-model="selectedDeliveryOption"
                       :name="'deliveryOption'"
-                      :value="item.id"
+                      :value="item.name"
                       :id="'deliveryOption' + item.id"
                     />
                     <label :for="'deliveryOption' + item.id"></label>
@@ -244,11 +248,11 @@
           </div>
         </div>
         <div class="cart__content-btn" style="justify-content: flex-end">
-          <UIButton class="btn-white">назад</UIButton>
-          <UIButton>продолжить</UIButton>
+          <button class="btn-white" @click="actualStep('second')">назад</button>
+          <button class="custom-btn" @click="actualStep('fourth')">продолжить</button>
         </div>
       </div>
-      <div class="cart__content-fourth">
+      <div class="cart__content-fourth" v-else-if="currentStep === 'fourth'">
         <div class="row">
           <div
             class="col-lg-3"
@@ -261,7 +265,7 @@
                   type="radio"
                   v-model="selectedPayment"
                   :name="'selectedPayment'"
-                  :value="item.id"
+                  :value="item.text"
                   :id="'optionPayment' + item.id"
                 />
                 <label :for="'optionPayment' + item.id"></label>
@@ -274,11 +278,89 @@
           </div>
         </div>
         <div class="cart__content-btn" style="justify-content: flex-end">
-          <UIButton class="btn-white">назад</UIButton>
-          <UIButton>продолжить</UIButton>
+          <button class="btn-white" @click="actualStep('third')">назад</button>
+          <button class="custom-btn" @click="actualStep('fifth')">продолжить</button>
         </div>
       </div>
-      <div class="cart__content-fifth"></div>
+      <div class="cart__content-fifth" v-else-if="currentStep === 'fifth'">
+        <div class="row">
+          <div class="col-lg-6">
+            <div class="cart__content-fifth-title">
+              <p>Плательщик</p>
+            </div>
+            <div class="cart__content-fifth-body">
+              <div class="row">
+                <div class="col-lg-5">
+                  <p>Ф.И.О:</p>
+                  <p>Телефон:</p>
+                  <p>Способ оплаты:</p>
+                </div>
+                <div class="col-lg-7">
+                  <p>{{ getSelectedPayer.fio }}</p>
+                  <p>{{ getSelectedPayer.phone }}</p>
+                  <p>{{ selectedPayment }}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="cart__content-fifth-title">
+              <p>Доставка</p>
+            </div>
+            <div class="cart__content-fifth-body">
+              <div class="row">
+                <div class="col-lg-5">
+                  <p>Способ доставки:</p>
+                  <p>Адрес доставки:</p>
+                </div>
+                <div class="col-lg-7">
+                  <p>ТК "{{ selectedDeliveryOption }}"</p>
+                  <p>г.{{ getSelectedAddress.city }}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-12">
+            <table class="table table-responsive-lg">
+              <thead class="table-light">
+              <tr>
+                <th scope="col">№</th>
+                <th scope="col">Наименование</th>
+                <th scope="col">Количество</th>
+                <th scope="col">всего</th>
+                <th scope="col"></th>
+              </tr>
+              </thead>
+              <tbody class="table-group-divider">
+              <tr v-for="(item, index) in cartData" :key="item.id">
+                <th scope="row">{{index + 1}}</th>
+                <td>
+                  <img :src="item.img" alt="" style="width: 62px" />
+                  <p>{{item.title}}</p>
+                </td>
+                <td>
+                  <span>{{item.count}}</span>
+                </td>
+                <td>{{calcLocalPrice}} руб.</td>
+              </tr>
+              </tbody>
+            </table>
+            <div class="cart__content-first-bottom">
+              <div class="cart__content-first-bottom-price">
+                <p>Всего: {{allPrice}} руб.</p>
+              </div>
+              <div class="cart__content-first-bottom-btn">
+                <button class="btn-white" @click="actualStep('first')">
+                  Отменить
+                </button>
+                <UIButton>
+                  оформить
+                </UIButton>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -306,6 +388,10 @@ export default {
     deliveryData: {
       type: Array,
       default: () => [],
+    },
+    currentStep: {
+      type: String,
+      default: () => "first",
     }
   },
   data() {
@@ -364,7 +450,7 @@ export default {
     deleteCard(data) {
       this.$store.dispatch('cart/cart/deleteObject', data)
     },
-    savePayerAndSelectPayer() {
+    savePayerAndChangePayer() {
       if (this.phone_payer !== undefined && this.fio_payer !== undefined && this.phone_payer !== "" && this.fio_payer !== "") {
         const payer = {
           fio: this.fio_payer,
@@ -387,30 +473,7 @@ export default {
         this.selectPayerTriggered = false;
       }
     },
-    selectPayerAndAddress(index, data, check) {
-      this.selectPayerTriggered = true;
-      if(check === 'payer') {
-        this.dataTab = data;
-        this.fio_payer = data.fio;
-        this.phone_payer = data.phone
-      } else if (check === 'address') {
-        this.dataTab = data;
-        this.address_city = data.city;
-        this.address_street = data.street;
-        this.address_home = data.home;
-        this.address_flat = data.flat;
-      }
-      this.indexTab = index
-      console.log(data)
-    },
-    deleteSelectPayerAndAddress(index, check) {
-      if(check === 'payer') {
-        this.$store.commit('cart/payer/DELETE_PAYER', index)
-      } else if (check === 'address') {
-        this.$store.commit('cart/address/DELETE_ADDRESS', index)
-      }
-    },
-    saveAndSelectAddress() {
+    saveAddressAndChangeAddress() {
       if (this.address_city !== "" && this.address_street !== "" && this.address_home !== "" && this.address_flat !== "")
       {
         const address = {
@@ -441,10 +504,44 @@ export default {
 
         this.selectPayerTriggered = false;
       }
+    },
+    changePayerAndAddress(index, data, check) {
+      this.selectPayerTriggered = true;
+      if(check === 'payer') {
+        this.dataTab = data;
+        this.fio_payer = data.fio;
+        this.phone_payer = data.phone
+      } else if (check === 'address') {
+        this.dataTab = data;
+        this.address_city = data.city;
+        this.address_street = data.street;
+        this.address_home = data.home;
+        this.address_flat = data.flat;
+      }
+      this.indexTab = index
+      console.log(data)
+    },
+    deleteSelectPayerAndAddress(index, check) {
+      if(check === 'payer') {
+        this.$store.commit('cart/payer/DELETE_PAYER', index)
+      } else if (check === 'address') {
+        this.$store.commit('cart/address/DELETE_ADDRESS', index)
+      }
+    },
+    selectPayerAndAddress(item, check) {
+      if(check === 'payer') {
+        this.$store.commit('cart/payer/SELECTED_PAYER', item)
+      } else if (check === 'address') {
+        this.$store.commit('cart/address/SELECTED_ADDRESS', item)
+      }
+    },
+    actualStep(step) {
+      this.$emit('actualStep', step)
     }
   },
   computed: {
-    ...mapGetters('cart/payer', ["getSelectData"]),
+    ...mapGetters('cart/payer', ["getSelectData", "getSelectedPayer"]),
+    ...mapGetters('cart/address', ["getSelectedAddress"]),
     allPrice() {
       return this.cartData.reduce((sum, obj) => sum + obj.price, 0) ;
     },
@@ -502,47 +599,6 @@ export default {
   }
   &__content {
     &-first {
-      .table {
-        margin-bottom: 40px;
-        &-light {
-          background: #222A31;
-          width: 100%;
-          tr {
-            th {
-              color: #ECECEC;
-              font-size: 14px;
-              font-weight: 400;
-              line-height: 30px;
-            }
-          }
-        }
-        &-group-divider {
-          tr {
-            td {
-              vertical-align: middle;
-            }
-            td:nth-child(2) {
-              display: flex;
-              align-items: center;
-              column-gap: 15px;
-              p {
-                color: #000;
-                font-size: 15px;
-                font-weight: 500;
-                width: 330px;
-              }
-            }
-            td:nth-child(3) {
-              p {
-                padding: 10px 15px;
-                border: 1px solid #DCD9D9;
-                background: #FFF;
-                color: #9B9B9B;
-              }
-            }
-          }
-        }
-      }
       &-bottom {
         display: flex;
         justify-content: flex-end;
@@ -560,6 +616,48 @@ export default {
       }
     }
   }
+  .table {
+    margin-bottom: 40px;
+    &-light {
+      background: #222A31;
+      width: 100%;
+      tr {
+        th {
+          color: #ECECEC;
+          font-size: 14px;
+          font-weight: 400;
+          line-height: 30px;
+        }
+      }
+    }
+    &-group-divider {
+      tr {
+        td {
+          vertical-align: middle;
+        }
+        td:nth-child(2) {
+          display: flex;
+          align-items: center;
+          column-gap: 15px;
+          p {
+            color: #000;
+            font-size: 15px;
+            font-weight: 500;
+            width: 330px;
+          }
+        }
+        td:nth-child(3) {
+          p {
+            padding: 10px 15px;
+            border: 1px solid #DCD9D9;
+            background: #FFF;
+            color: #9B9B9B;
+          }
+        }
+      }
+    }
+  }
+
   .cart__content-title {
     margin-bottom: 16px;
     p {
@@ -595,6 +693,7 @@ export default {
         justify-content: space-between;
         &-text {
           p, span {
+            text-align: start;
             color: #222A31;
             font-size: 15px;
             font-weight: 400;
@@ -707,5 +806,55 @@ export default {
       padding: 15px 47px;
     }
   }
+  .cart__content-fifth-title {
+    background: #222A31;
+    padding: 6px 22px;
+    margin-bottom: 20px;
+    p {
+      color: #FFF;
+      font-size: 18px;
+      font-weight: 400;
+      line-height: 30px;
+    }
+  }
+  .cart__content-fifth-body {
+    margin-left: 50px;
+    margin-bottom: 20px;
+    p {
+      color: #000;
+      font-family: Ubuntu;
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 30px; /* 187.5% */
+    }
+  }
+  .input-radio-custom {
+    display: flex;
+    column-gap: 12px;
+    align-items: flex-start;
+    position: relative;
+  }
+  input[type="radio"] {
+    display: none;
+  }
+  label {
+    width: 19px;
+    height: 19px;
+    border: 3px solid #000;
+    cursor: pointer;
+    position: relative;
+  }
+  input[type='radio']:checked + label:after {
+    content: "";
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    right: 3px;
+    bottom: 3px;
+    background-color: #000;
+  }
+
+
 }
 </style>

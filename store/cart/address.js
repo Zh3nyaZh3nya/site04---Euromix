@@ -4,12 +4,12 @@ export const state = () => ({
     {
       id: 1,
       img: "/cartImg/image1.png",
-      name: "пэк",
+      name: "ПЭК",
     },
     {
       id: 2,
       img: "/cartImg/image2.png",
-      name: "DHL"
+      name: "dhl"
     },
     {
       id: 3,
@@ -21,7 +21,10 @@ export const state = () => ({
       img: "/cartImg/image2.png",
       name: "DHL"
     },
-  ]
+  ],
+  selectedAddress: {
+    id: 1,
+  }
 })
 
 export const mutations = {
@@ -35,6 +38,9 @@ export const mutations = {
   },
   DELETE_ADDRESS(state, index) {
     state.addressData.splice(index, 1)
+  },
+  SELECTED_ADDRESS(state, item) {
+    state.selectedAddress = Object.assign({}, state.selectedPayer, item);
   }
 }
 
@@ -44,5 +50,6 @@ export const actions = {
 
 export const getters = {
   getAddressData: (state) => state.addressData,
-  getDeliveryData: (state) => state.deliveryData
+  getDeliveryData: (state) => state.deliveryData,
+  getSelectedAddress: (state) => state.selectedAddress,
 }
