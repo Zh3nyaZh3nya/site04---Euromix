@@ -1,5 +1,9 @@
 # site04
 
+```
+Vue 2 + Nuxt 2 + vuex Store ( SCSS, Bootstrap )
+```
+
 ## Build Setup
 
 ```bash
